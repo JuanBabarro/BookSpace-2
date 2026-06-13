@@ -9,6 +9,7 @@ window.obtenerLibrosGuardados = function () {
 };
 
 window.guardarLibroEnLista = async function (idLibro) {
+    const idLibroInt = parseInt(idLibro, 10);
     if (!usuarioActual) {
         alert('Debes iniciar sesión para guardar favoritos.');
         return false;
@@ -17,23 +18,20 @@ window.guardarLibroEnLista = async function (idLibro) {
         const respuesta = await fetch('/api/favoritos', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ user_id: (usuarioActual.id || usuarioActual.id_usuario), book_id: idLibro })
+            body: JSON.stringify({ user_id: (usuarioActual.id || usuarioActual.id_usuario), book_id: idLibroInt })
         });
         if (respuesta.ok) {
-            if (!idsLibrosGuardados.includes(idLibro)) idsLibrosGuardados.push(idLibro);
+            if (!idsLibrosGuardados.includes(idLibroInt)) idsLibrosGuardados.push(idLibroInt);
 
             // Inicializar progreso local en 0
-            const libro = datosLibros.find(l => (l.id || l.id_libro) === idLibro);
+            const libro = datosLibros.find(l => (l.id || l.id_libro) === idLibroInt);
             if (libro) {
                 libro.pagina_marcador = libro.pagina_marcador || 0;
             }
 
-            // Renderizar vistas si es necesario
+            // Renderizar la lista de favoritos si estamos en esa vista
             if (document.getElementById('myListContainer') && typeof window.renderizarMiLista === 'function') {
                 window.renderizarMiLista();
-            }
-            if (document.getElementById('booksGrid') && typeof window.renderizarLibros === 'function') {
-                window.renderizarLibros(datosLibros);
             }
 
             return true;
@@ -45,22 +43,20 @@ window.guardarLibroEnLista = async function (idLibro) {
 };
 
 window.eliminarLibroDeLista = async function (idLibro) {
+    const idLibroInt = parseInt(idLibro, 10);
     if (!usuarioActual) return false;
     try {
         const respuesta = await fetch('/api/favoritos', {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ user_id: (usuarioActual.id || usuarioActual.id_usuario), book_id: idLibro })
+            body: JSON.stringify({ user_id: (usuarioActual.id || usuarioActual.id_usuario), book_id: idLibroInt })
         });
         if (respuesta.ok) {
-            idsLibrosGuardados = idsLibrosGuardados.filter(id => id !== idLibro);
+            idsLibrosGuardados = idsLibrosGuardados.filter(id => id !== idLibroInt);
 
-            // Renderizar vistas si es necesario
+            // Renderizar la lista de favoritos si estamos en esa vista
             if (document.getElementById('myListContainer') && typeof window.renderizarMiLista === 'function') {
                 window.renderizarMiLista();
-            }
-            if (document.getElementById('booksGrid') && typeof window.renderizarLibros === 'function') {
-                window.renderizarLibros(datosLibros);
             }
             return true;
         }

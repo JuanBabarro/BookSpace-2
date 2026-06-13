@@ -29,7 +29,7 @@ const addFavorite = async (req, res) => {
         );
         if (existing.length === 0) {
             await db.execute(
-                'INSERT INTO libros_usuario (id_usuario, id_libro) VALUES (?, ?)',
+                'INSERT INTO libros_usuario (id_usuario, id_libro, pagina_marcador) VALUES (?, ?, 0)',
                 [user_id, book_id]
             );
         }
