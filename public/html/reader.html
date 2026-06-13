@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lector | BookSpace</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/modal.css">
+    <link rel="stylesheet" href="/css/reader.css">
+    <link rel="stylesheet" href="/css/rating-modal.css">
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0f0b09">
+    <link rel="apple-touch-icon" href="/images/b5115b72-8826-4cb9-ac17-2b6836d731e0.png">
+</head>
+
+<body class="dashboard-layout reader-page-body">
+    <!-- Navbar EXACTLY like home.html -->
+    <nav class="navbar">
+        <a href="/inicio" class="logo">
+            <span class="iconify" data-icon="game-icons:book-cover"></span>
+            BookSpace
+        </a>
+        <div class="nav-actions">
+            <a href="/mi-lista" class="nav-link" title="mi Lista"><span class="iconify" data-icon="mdi:bookmark-multiple-outline"></span></a>
+            <a href="#" class="nav-link" title="notificaciones"><span class="iconify" data-icon="mdi:bell-outline"></span></a>
+            <div class="nav-dropdown">
+                <a href="#" class="nav-link" id="configBtn" title="configuracion">
+                    <span class="iconify" data-icon="mdi:cog-outline"></span>
+                </a>
+                <div class="dropdown-menu" id="configDropdown">
+                    <a href="/perfil" class="dropdown-item">
+                        <span class="iconify" data-icon="mdi:account-circle-outline"></span>
+                        Mi Perfil
+                    </a>
+                    <a href="/logout" class="dropdown-item logout">
+                        <span class="iconify" data-icon="mdi:logout"></span>
+                        Cerrar Sesión
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="reader-main-layout">
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+        <!-- Sidebar Controls (Replica from image) -->
+        <aside class="sidebar-controls" id="sidebarControls">
+            <div class="control-box glass-card">
+                <button class="close-sidebar-btn" id="closeSidebarBtn" style="display: none;" title="Cerrar Controles">
+                    <span class="iconify" data-icon="mdi:close"></span>
+                </button>
+                <h2 class="control-title">Controles</h2>
+                
+                <div class="sidebar-progress">
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" id="progressBarFill" style="width: 75%;"></div>
+                    </div>
+                    <p class="progress-text">75% completado</p>
+                </div>
+
+                <div class="sidebar-actions">
+                    <button class="action-btn" id="zoomOutSidebar">
+                        <span class="iconify" data-icon="mdi:magnify-minus-outline"></span>
+                        <span>Zoom Out</span>
+                    </button>
+                    <button class="action-btn" id="zoomInSidebar">
+                        <span class="iconify" data-icon="mdi:magnify-plus-outline"></span>
+                        <span>Zoom In</span>
+                    </button>
+                    <button class="action-btn highlight" id="bookmarkBtn">
+                        <span class="iconify" data-icon="mdi:bookmark-outline" id="bookmarkIcon"></span>
+                        <span>Marcador</span>
+                    </button>
+                    <button class="action-btn star" id="finishBtn">
+                        <span class="iconify" data-icon="mdi:star"></span>
+                        <span>Calificar</span>
+                    </button>
+                </div>
+
+                <div class="sidebar-stats">
+                    <div class="stat-row">
+                        <span>ZOOM:</span>
+                        <span class="stat-value" id="zoomValStat">100%</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>MARCADOR:</span>
+                        <span class="stat-value" id="bookmarkValStat">1771</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Panel (Replica from image) -->
+        <main class="reader-panel">
+            <div class="panel-container glass-card">
+                <header class="panel-header">
+                    <button class="btn-toggle-controls" id="toggleControlsBtn" style="display: none;" title="Mostrar Controles">
+                        <span class="iconify" data-icon="game-icons:settings-knobs"></span>
+                        Controles
+                    </button>
+                    <div class="book-info">
+                        <img src="" alt="" class="mini-cover" id="readerMiniCover">
+                        <div class="text-info">
+                            <h1 id="readerBookTitle">Cargando...</h1>
+                            <p class="author" id="readerBookAuthor">por ...</p>
+                        </div>
+                    </div>
+                    <div class="zoom-controls">
+                        <button class="zoom-btn circle" id="zoomOutBtn"><span class="iconify" data-icon="mdi:minus"></span></button>
+                        <span class="zoom-percent" id="zoomPercent">100%</span>
+                        <button class="zoom-btn circle" id="zoomInBtn"><span class="iconify" data-icon="mdi:plus"></span></button>
+                        <button class="zoom-btn expand" id="fullscreenBtn"><span class="iconify" data-icon="mdi:fullscreen"></span></button>
+                    </div>
+                </header>
+
+                <div class="pdf-content-area" id="pdfContainer">
+                    <div class="pdf-sheet">
+                        <iframe id="pdfViewer" src="" frameborder="0"></iframe>
+                    </div>
+                    <button class="external-btn">
+                        <span class="iconify" data-icon="mdi:open-in-new"></span>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Bookmark Modal -->
+    <div class="modal-overlay" id="bookmarkModal" style="display: none;">
+        <div class="bookmark-modal-card">
+            <!-- Decorative top border accent -->
+            <div class="bookmark-modal-accent"></div>
+
+            <!-- Header -->
+            <div class="bookmark-modal-header">
+                <div class="bookmark-modal-icon">
+                    <span class="iconify" data-icon="mdi:bookmark"></span>
+                </div>
+                <div>
+                    <h2 class="bookmark-modal-title">Marcador</h2>
+                    <p class="bookmark-modal-subtitle">Guarda tu progreso de lectura</p>
+                </div>
+                <button id="closeBookmarkModal" class="bookmark-close-btn">
+                    <span class="iconify" data-icon="mdi:close"></span>
+                </button>
+            </div>
+
+            <!-- Divider -->
+            <div class="bookmark-modal-divider"></div>
+
+            <!-- Input -->
+            <div class="bookmark-input-group">
+                <label class="bookmark-input-label">Página actual</label>
+                <div class="bookmark-input-wrapper">
+                    <span class="iconify" data-icon="mdi:book-open-page-variant"></span>
+                    <input type="number" id="bookmarkPageInput" class="bookmark-input" placeholder="Ej: 42" min="1">
+                </div>
+                <p id="bookmarkError" style="color: var(--error); display: none; margin-top: 0.5rem; font-size: 0.85rem;"></p>
+            </div>
+
+            <!-- Actions -->
+            <div class="bookmark-modal-actions">
+                <button id="saveBookmarkBtn" class="bookmark-save-btn">
+                    <span class="iconify" data-icon="mdi:content-save-outline"></span>
+                    Guardar Marcador
+                </button>
+                <button id="clearBookmarkBtn" class="bookmark-clear-btn">
+                    <span class="iconify" data-icon="mdi:trash-can-outline"></span>
+                    Eliminar Marcador
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rating Modal Container (loaded dynamically) -->
+    <div id="ratingModalContainer"></div>
+
+    <script src="/js/reader.js"></script>
+
+    <!-- PWA Service Worker Registration -->
+    <script src="../js/pwa.js"></script>
+</body>
+</html>

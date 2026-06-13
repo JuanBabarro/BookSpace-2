@@ -1,0 +1,235 @@
+/* Global Design System - Minimalist & Elegant */
+
+:root {
+    --bg-dark: #0f0b09;
+    --card-bg: rgba(30, 24, 20, 0.7);
+    --primary: #c2a170;
+    --primary-hover: #d4b68a;
+    --text-main: #f5f0e6;
+    --text-muted: #a89a8c;
+    --accent: #4a5d4b;
+    --error: #e67e73;
+    --glass: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(194, 161, 112, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(74, 93, 75, 0.05) 0%, transparent 40%),
+        url('../images/dashboard-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--text-main);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+body.auth-page {
+    background-image:
+        radial-gradient(circle at center, rgba(15, 11, 9, 0.4) 0%, rgba(15, 11, 9, 0.8) 100%),
+        url('../images/b5115b72-8826-4cb9-ac17-2b6836d731e0.png');
+}
+
+/* Glassmorphism Card */
+.glass-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    padding: 2.5rem;
+    width: 100%;
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+}
+
+/* Inputs */
+.input-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper .iconify {
+    position: absolute;
+    left: 1rem;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+}
+
+.input-wrapper input {
+    width: 100%;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 0.8rem 1rem 0.8rem 2.8rem;
+    color: var(--text-main);
+    font-family: var(--font-body);
+    transition: all 0.3s ease;
+}
+
+.input-wrapper input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 0 4px rgba(194, 161, 112, 0.1);
+}
+
+/* Buttons */
+.btn-primary {
+    background: var(--primary);
+    color: var(--bg-dark);
+    border: none;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(194, 161, 112, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: var(--error);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-secondary:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(230, 126, 115, 0.3);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .glass-card {
+        padding: 1.5rem;
+    }
+
+    body {
+        padding: 1rem;
+    }
+}
+
+/* Common Auth Styles */
+.footer-links {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.footer-links a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Button Loading Effect */
+.btn-primary.btn-loading {
+    position: relative;
+    overflow: hidden;
+    pointer-events: none; /* Disable clicks while loading */
+}
+
+.btn-primary.btn-loading::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background-color: var(--text-main); /* Paint with a different color */
+    opacity: 0.2;
+    z-index: 1;
+    animation: paintButton 1.2s ease-in-out forwards;
+}
+
+.btn-primary span {
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes paintButton {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}

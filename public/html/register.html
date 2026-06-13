@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro | Biblioteca Digital</title>
+    <!-- Prevent Cache -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/register.css">
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0f0b09">
+    <link rel="apple-touch-icon" href="/images/b5115b72-8826-4cb9-ac17-2b6836d731e0.png">
+</head>
+
+<body class="auth-page">
+    <div class="register-container">
+        <div class="glass-card register-card">
+            <div class="header">
+                <h1>Crea tu cuenta</h1>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Únete a nuestra comunidad de lectores</p>
+            </div>
+
+            <form id="formularioRegistro">
+                <div class="input-group">
+                    <label for="nombre_completo">Nombre Completo</label>
+                    <div class="input-wrapper">
+                        <span class="iconify" data-icon="mdi:account-outline"></span>
+                        <input type="text" id="nombre_completo" placeholder="Tu nombre" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="nombre_usuario">Nombre de Usuario</label>
+                    <div class="input-wrapper">
+                        <span class="iconify" data-icon="mdi:account-circle-outline"></span>
+                        <input type="text" id="nombre_usuario" placeholder="Tu usuario (ej. juanperez)" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="correo">Correo Electrónico</label>
+                    <div class="input-wrapper">
+                        <span class="iconify" data-icon="mdi:email-outline"></span>
+                        <input type="email" id="correo" placeholder="tu@ejemplo.com" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="contrasena">Contraseña</label>
+                    <div class="input-wrapper">
+                        <span class="iconify" data-icon="mdi:lock-outline"></span>
+                        <input type="password" id="contrasena" placeholder="Mínimo 6 caracteres" required>
+                    </div>
+                </div>
+
+                <div class="input-group" style="margin-bottom: 2rem;">
+                    <label for="confirmar_contrasena">Repetir Contraseña</label>
+                    <div class="input-wrapper">
+                        <span class="iconify" data-icon="mdi:lock-check-outline"></span>
+                        <input type="password" id="confirmar_contrasena" placeholder="Repite tu contraseña" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    <span class="btn-text">Crear Cuenta</span>
+                    <span class="iconify" data-icon="mdi:check"></span>
+                </button>
+                <div id="textoResultadoRegistro" style="margin-top: 1.5rem; text-align: center; display: none;"></div>
+            </form>
+
+            <div class="footer-links">
+                <p style="color: var(--text-muted);">¿Ya tienes una cuenta? <a href="/">Inicia sesión</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/register.js?v=2"></script>
+
+    <!-- PWA Service Worker Registration -->
+    <script src="../js/pwa.js"></script>
+</body>
+
+</html>
