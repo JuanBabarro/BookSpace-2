@@ -23,7 +23,7 @@ window.guardarLibroEnLista = async function (idLibro) {
             if (!idsLibrosGuardados.includes(idLibro)) idsLibrosGuardados.push(idLibro);
 
             // Inicializar progreso local en 0
-            const libro = datosLibros.find(l => l.id === idLibro);
+            const libro = datosLibros.find(l => (l.id || l.id_libro) === idLibro);
             if (libro) {
                 libro.pagina_marcador = libro.pagina_marcador || 0;
             }
@@ -75,7 +75,7 @@ let idLibroActual = null;
 
 window.abrirModalLibro = function (idLibro) {
     idLibroActual = idLibro;
-    const libro = datosLibros.find(l => l.id === idLibro);
+    const libro = datosLibros.find(l => (l.id || l.id_libro) === idLibro);
     if (!libro) return;
 
     const modal = document.getElementById('bookModal');
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 libro.portada = imagenesPortada[indice % imagenesPortada.length];
 
                 // Mapear marcador/progreso guardado desde la BD
-                const fav = Array.isArray(resultadoFavoritos) ? resultadoFavoritos.find(f => (typeof f === 'object' ? f.book_id : f) === libro.id) : null;
+                const fav = Array.isArray(resultadoFavoritos) ? resultadoFavoritos.find(f => (typeof f === 'object' ? f.book_id : f) === (libro.id || libro.id_libro)) : null;
                 libro.pagina_marcador = fav && typeof fav === 'object' ? fav.bookmark_page : 0;
 
                 return libro;
@@ -350,15 +350,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const librosGuardados = obtenerLibrosGuardados();
 
         booksGrid.innerHTML = libros.map((libro) => {
-            const estaGuardado = librosGuardados.includes(libro.id);
+            const libroId = libro.id || libro.id_libro;
+            const estaGuardado = librosGuardados.includes(libroId);
             const iconoCorazon = estaGuardado ? 'mdi:heart' : 'mdi:heart-outline';
             const claseActiva = estaGuardado ? 'active' : '';
 
             return `
-                <div class="book-card" onclick="abrirModalLibro(${libro.id})">
+                <div class="book-card" onclick="abrirModalLibro(${libroId})">
                     <div class="book-cover">
                         <img src="${libro.portada}" alt="${libro.titulo}">
-                        <button class="fav-btn ${claseActiva}" onclick="alternarFavorito(event, this, ${libro.id})">
+                        <button class="fav-btn ${claseActiva}" onclick="alternarFavorito(event, this, ${libroId})">
                             <span class="iconify" data-icon="${iconoCorazon}"></span>
                         </button>
                         <div class="book-details">
@@ -376,7 +377,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!myListContainer) return;
 
         const idsGuardados = obtenerLibrosGuardados();
-        const librosGuardados = datosLibros.filter(libro => idsGuardados.includes(libro.id));
+        const librosGuardados = datosLibros.filter(libro => idsGuardados.includes(libro.id || libro.id_libro));
 
         if (librosGuardados.length === 0) {
             myListContainer.innerHTML = '<p style="color: var(--reader-text-muted); text-align: center; width: 100%; grid-column: 1 / -1; padding: 2rem;">Tu lista está vacía. Explora el inicio para agregar libros.</p>';
@@ -422,11 +423,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <div class="item-footer">
                         <div class="item-actions">
-                            <button class="btn-read" onclick="window.location.href='/html/reader.html?id=${libro.id}'">
+                            <button class="btn-read" onclick="window.location.href='/html/reader.html?id=${libro.id || libro.id_libro}'">
                                 <span class="iconify" data-icon="mdi:book-open-page-variant"></span>
                                 ${porcentajeProgreso > 0 ? 'Continuar' : 'Leer'}
                             </button>
-                            <button class="btn-remove" onclick="eliminarLibroDeLista(${libro.id})">
+                            <button class="btn-remove" onclick="eliminarLibroDeLista(${libro.id || libro.id_libro})">
                                 <span class="iconify" data-icon="mdi:trash-can-outline"></span>
                                 Eliminar de la Lista
                             </button>
