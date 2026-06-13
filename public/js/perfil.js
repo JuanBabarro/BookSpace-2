@@ -64,35 +64,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Profile Form Logic
-    const profileForm = document.getElementById('profileForm');
+    const profileForm = document.getElementById('formularioPerfil');
     if (profileForm && currentUser) {
         profileForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            const usernameVal = document.getElementById('username').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-
+            const fullName = document.getElementById('nombre_completo').value.trim();
+            const email = document.getElementById('correo').value.trim();
+            const password = document.getElementById('contrasena').value;
+            const confirmPassword = document.getElementById('confirmar_contrasena').value;
+            
             // Simple validation
             if (password && password !== confirmPassword) {
                 alert('Las contraseñas no coinciden.');
                 return;
             }
-
-            // Split name to support full name updating
-            const nameParts = usernameVal.trim().split(' ');
-            const first_name = nameParts[0];
-            const last_name = nameParts.slice(1).join(' ') || '.';
-            const username = usernameVal.replace(/\s+/g, '').toLowerCase() || first_name;
-
+            
+            const nameParts = fullName.split(' ');
+            const first_name = nameParts[0] || '';
+            const last_name = nameParts.slice(1).join(' ') || '';
+            const username = fullName.replace(/\s+/g, '').toLowerCase() || first_name;
+            
             const saveBtn = profileForm.querySelector('button');
             const originalText = saveBtn.innerHTML;
             
             saveBtn.disabled = true;
             saveBtn.innerHTML = '<span class="iconify" data-icon="mdi:loading" data-inline="false"></span> Guardando...';
             saveBtn.style.opacity = '0.7';
-
+            
             let isSuccess = false;
             try {
                 const response = await fetch(`/api/auth/update-profile/${currentUser.id || currentUser.id_usuario}`, {
@@ -106,35 +105,22 @@ document.addEventListener('DOMContentLoaded', () => {
                         password: password || undefined
                     })
                 });
-
                 if (response.ok) {
                     const result = await response.json();
-                    
-                    // Update session storage
-                    const updatedUser = {
-                        ...currentUser,
-                        ...result.user
-                    };
+                    const updatedUser = { ...currentUser, ...result.user };
                     localStorage.setItem('usuario', JSON.stringify(updatedUser));
-                    
-                    // Update header name and alias in page
-                    document.querySelector('.profile-header-card h2').textContent = updatedUser.first_name + " " + updatedUser.last_name;
-                    document.getElementById('username').value = updatedUser.username || updatedUser.first_name;
-                    document.getElementById('email').value = updatedUser.email;
-                    
-                    // Clear password fields
-                    document.getElementById('password').value = '';
-                    document.getElementById('confirmPassword').value = '';
-                    
+                    // Update UI elements
+                    document.querySelector('.profile-header-card h2').textContent = `${updatedUser.first_name} ${updatedUser.last_name}`;
+                    document.getElementById('nombre_completo').value = `${updatedUser.first_name} ${updatedUser.last_name}`;
+                    document.getElementById('correo').value = updatedUser.email;
+                    document.getElementById('contrasena').value = '';
+                    document.getElementById('confirmar_contrasena').value = '';
                     isSuccess = true;
-                    
-                    // Show success state on the button
                     saveBtn.innerHTML = '<span class="iconify" data-icon="mdi:check-circle" data-inline="false"></span> Cambios guardados';
-                    saveBtn.style.backgroundColor = '#81c784'; // success green
+                    saveBtn.style.backgroundColor = '#81c784';
                     saveBtn.style.borderColor = '#81c784';
                     saveBtn.style.color = '#1e1814';
                     saveBtn.style.opacity = '1';
-                    
                     setTimeout(() => {
                         saveBtn.disabled = false;
                         saveBtn.innerHTML = originalText;
@@ -147,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert('Error: ' + (errData.error || 'No se pudo actualizar el perfil.'));
                 }
             } catch (err) {
-                console.error("Error al actualizar perfil:", err);
+                console.error('Error al actualizar perfil:', err);
                 alert('Error de conexión al servidor.');
             } finally {
                 if (!isSuccess) {
@@ -163,10 +149,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const reviewsGrid = document.getElementById('reviewsGrid');
 
     if (reviewsGrid && currentUser) {
-        // Cargar nombre e email guardados
-        document.querySelector('.profile-header-card h2').textContent = currentUser.first_name + " " + currentUser.last_name;
-        document.getElementById('username').value = currentUser.username || currentUser.first_name;
-        document.getElementById('email').value = currentUser.email;
+        // Load name and email saved values into the form and header
+        document.querySelector('.profile-header-card h2').textContent = `${currentUser.first_name} ${currentUser.last_name}`;
+        document.getElementById('nombre_completo').value = `${currentUser.first_name} ${currentUser.last_name}`;
+        document.getElementById('correo').value = currentUser.email;
+        // Optionally set avatar if needed (already handled above)
+        
 
         const coverImages = [
             '/images/image/Hannibal.jpg',
