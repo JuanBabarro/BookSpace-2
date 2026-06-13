@@ -15,10 +15,12 @@ window.guardarLibroEnLista = async function (idLibro) {
         return false;
     }
     try {
+        const payload = { user_id: (usuarioActual.id || usuarioActual.id_usuario), book_id: idLibroInt };
+        console.log("Enviando POST a /api/favoritos con payload:", payload);
         const respuesta = await fetch('/api/favoritos', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ user_id: (usuarioActual.id || usuarioActual.id_usuario), book_id: idLibroInt })
+            body: JSON.stringify(payload)
         });
         if (respuesta.ok) {
             if (!idsLibrosGuardados.includes(idLibroInt)) idsLibrosGuardados.push(idLibroInt);

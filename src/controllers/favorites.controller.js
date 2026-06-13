@@ -20,7 +20,8 @@ const addFavorite = async (req, res) => {
         const { user_id, book_id } = req.body;
         
         if (!user_id || !book_id) {
-            return res.status(400).json({ error: "Faltan datos de usuario o libro" });
+            console.error("400 Error - Datos faltantes:", req.body);
+            return res.status(400).json({ error: "Faltan datos de usuario o libro", debug: req.body });
         }
 
         const [existing] = await db.execute(
