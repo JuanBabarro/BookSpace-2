@@ -479,7 +479,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Open modal
         document.getElementById('finishBtn').addEventListener('click', () => {
             if (currentBookPages > 0 && currentBookmarkPage < currentBookPages) {
-                alert(`Debes terminar de leer el libro (llegar a la página ${currentBookPages}) para poder clasificarlo.`);
+                const infoModal = document.getElementById('infoModal');
+                const infoContent = document.getElementById('infoContent');
+                if (infoModal && infoContent) {
+                    infoContent.textContent = `Para clasificar debes terminar de leer el libro (llegar a la página ${currentBookPages}).`;
+                    infoModal.style.display = 'flex';
+                    setTimeout(() => { infoModal.style.display = 'none'; }, 3000);
+                }
                 return;
             }
             loadSavedRating();

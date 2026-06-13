@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Configuración inicial si es necesaria
+
 });
 
 document.getElementById('formularioLogin').addEventListener('submit', async function (e) {
@@ -37,13 +37,13 @@ document.getElementById('formularioLogin').addEventListener('submit', async func
                 window.location.href = '/inicio';
             }, 1200);
         } else {
-            // Quitar animación en caso de error
+
             boton.classList.remove('btn-loading');
-            
-            // Mostrar error del backend
+
+
             const mensajeError = datos.errors ? datos.errors[0].msg : datos.error;
             resultado.textContent = 'Error: ' + mensajeError;
-            resultado.style.color = '#ef4444'; // Rojo para error
+            resultado.style.color = '#ef4444';
             resultado.style.display = 'block';
         }
     } catch (error) {
