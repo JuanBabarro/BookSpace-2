@@ -478,6 +478,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Open modal
         document.getElementById('finishBtn').addEventListener('click', () => {
+            if (currentBookPages > 0 && currentBookmarkPage < currentBookPages) {
+                alert(`Debes terminar de leer el libro (llegar a la página ${currentBookPages}) para poder clasificarlo.`);
+                return;
+            }
             loadSavedRating();
             ratingModal.style.display = 'flex';
         });
