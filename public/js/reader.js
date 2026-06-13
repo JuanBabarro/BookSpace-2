@@ -478,6 +478,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Open modal
         document.getElementById('finishBtn').addEventListener('click', () => {
+            const modal = document.getElementById('ratingModal');
+            if (!modal) {
+                console.error("Rating modal not found");
+                return;
+            }
             if (currentBookPages > 0 && currentBookmarkPage < currentBookPages) {
                 const infoModal = document.getElementById('infoModal');
                 const infoContent = document.getElementById('infoContent');
@@ -489,7 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             loadSavedRating();
-            ratingModal.style.display = 'flex';
+            modal.style.display = 'flex';
         });
 
         // Close handlers
