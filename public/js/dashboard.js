@@ -4,11 +4,11 @@ const usuarioActual = usuarioStr ? JSON.parse(usuarioStr) : null;
 let idsLibrosGuardados = [];
 
 // Helpers de API para Mi Lista
-window.obtenerLibrosGuardados = function() {
+window.obtenerLibrosGuardados = function () {
     return idsLibrosGuardados;
 };
 
-window.guardarLibroEnLista = async function(idLibro) {
+window.guardarLibroEnLista = async function (idLibro) {
     if (!usuarioActual) {
         alert('Debes iniciar sesión para guardar favoritos.');
         return false;
@@ -17,17 +17,25 @@ window.guardarLibroEnLista = async function(idLibro) {
         const respuesta = await fetch('/api/favoritos', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id_usuario: usuarioActual.id, id_libro: idLibro })
+            body: JSON.stringify({ user_id: (usuarioActual.id || usuarioActual.id_usuario), book_id: idLibro })
         });
         if (respuesta.ok) {
             if (!idsLibrosGuardados.includes(idLibro)) idsLibrosGuardados.push(idLibro);
-            
+
             // Inicializar progreso local en 0
             const libro = datosLibros.find(l => l.id === idLibro);
             if (libro) {
                 libro.pagina_marcador = libro.pagina_marcador || 0;
             }
-            
+
+            // Renderizar vistas si es necesario
+            if (document.getElementById('myListContainer') && typeof window.renderizarMiLista === 'function') {
+                window.renderizarMiLista();
+            }
+            if (document.getElementById('booksGrid') && typeof window.renderizarLibros === 'function') {
+                window.renderizarLibros(datosLibros);
+            }
+
             return true;
         }
     } catch (err) {
@@ -36,17 +44,17 @@ window.guardarLibroEnLista = async function(idLibro) {
     return false;
 };
 
-window.eliminarLibroDeLista = async function(idLibro) {
+window.eliminarLibroDeLista = async function (idLibro) {
     if (!usuarioActual) return false;
     try {
         const respuesta = await fetch('/api/favoritos', {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ user_id: usuarioActual.id, book_id: idLibro })
+            body: JSON.stringify({ user_id: (usuarioActual.id || usuarioActual.id_usuario), book_id: idLibro })
         });
         if (respuesta.ok) {
             idsLibrosGuardados = idsLibrosGuardados.filter(id => id !== idLibro);
-            
+
             // Renderizar vistas si es necesario
             if (document.getElementById('myListContainer') && typeof window.renderizarMiLista === 'function') {
                 window.renderizarMiLista();
@@ -65,7 +73,7 @@ window.eliminarLibroDeLista = async function(idLibro) {
 // Lógica de Modal - Carga Dinámica desde modal.html
 let idLibroActual = null;
 
-window.abrirModalLibro = function(idLibro) {
+window.abrirModalLibro = function (idLibro) {
     idLibroActual = idLibro;
     const libro = datosLibros.find(l => l.id === idLibro);
     if (!libro) return;
@@ -111,16 +119,16 @@ window.abrirModalLibro = function(idLibro) {
 };
 
 // Lógica de favoritos (alternar)
-window.alternarFavorito = async function(evento, boton, idLibro) {
+window.alternarFavorito = async function (evento, boton, idLibro) {
     evento.stopPropagation();
-    
+
     if (!usuarioActual) {
         alert('Debes iniciar sesión para agregar favoritos.');
         return;
     }
 
     const estaGuardado = idsLibrosGuardados.includes(idLibro);
-    
+
     if (estaGuardado) {
         const exito = await window.eliminarLibroDeLista(idLibro);
         if (exito) {
@@ -190,29 +198,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Carga inicial desde las API en español
     const obtenerLibros = fetch('/api/libros').then(res => res.json());
-    const obtenerFavoritos = usuarioActual ? 
-        fetch(`/api/favoritos/${usuarioActual.id}`).then(res => res.json()) : 
+    const obtenerFavoritos = usuarioActual ?
+        fetch(`/api/favoritos/${usuarioActual.id || usuarioActual.id_usuario}`).then(res => res.json()) :
         Promise.resolve([]);
 
     Promise.all([obtenerLibros, obtenerFavoritos])
         .then(([resultadoLibros, resultadoFavoritos]) => {
             idsLibrosGuardados = Array.isArray(resultadoFavoritos) ? resultadoFavoritos.map(f => typeof f === 'object' ? f.book_id : f) : [];
-            
+
             datosLibros = resultadoLibros.map((libro, indice) => {
                 libro.portada = imagenesPortada[indice % imagenesPortada.length];
-                
+
                 // Mapear marcador/progreso guardado desde la BD
                 const fav = Array.isArray(resultadoFavoritos) ? resultadoFavoritos.find(f => (typeof f === 'object' ? f.book_id : f) === libro.id) : null;
                 libro.pagina_marcador = fav && typeof fav === 'object' ? fav.bookmark_page : 0;
-                
+
                 return libro;
             });
-            
+
             // Si estamos en el inicio, renderizar grilla
             if (booksGrid) {
                 window.renderizarLibros(datosLibros);
             }
-            
+
             // Si estamos en mi-lista, renderizar lista
             if (myListContainer) {
                 window.renderizarMiLista();
@@ -229,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
             const terminoBusqueda = e.target.value.toLowerCase();
-            const librosFiltrados = datosLibros.filter(libro => 
+            const librosFiltrados = datosLibros.filter(libro =>
                 libro.titulo.toLowerCase().includes(terminoBusqueda) ||
                 libro.autor.toLowerCase().includes(terminoBusqueda)
             );
@@ -243,11 +251,11 @@ document.addEventListener('DOMContentLoaded', () => {
         listSearchInput.addEventListener('input', (e) => {
             const terminoBusqueda = e.target.value.toLowerCase();
             const itemsLista = document.querySelectorAll('.list-item');
-            
+
             itemsLista.forEach(item => {
                 const titulo = item.querySelector('h3').textContent.toLowerCase();
                 const autor = item.querySelector('.author').textContent.toLowerCase();
-                
+
                 if (titulo.includes(terminoBusqueda) || autor.includes(terminoBusqueda)) {
                     item.style.display = 'flex';
                 } else {
@@ -257,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Lógica de Menú Desplegable (Icono de engranaje)
+
     const configBtn = document.getElementById('configBtn');
     const configDropdown = document.getElementById('configDropdown');
 
@@ -336,16 +344,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Asignar renderizarLibros al objeto global para llamarlo desde cualquier lado
-    window.renderizarLibros = function(libros) {
+    window.renderizarLibros = function (libros) {
         if (!booksGrid) return;
-        
+
         const librosGuardados = obtenerLibrosGuardados();
-        
+
         booksGrid.innerHTML = libros.map((libro) => {
             const estaGuardado = librosGuardados.includes(libro.id);
             const iconoCorazon = estaGuardado ? 'mdi:heart' : 'mdi:heart-outline';
             const claseActiva = estaGuardado ? 'active' : '';
-            
+
             return `
                 <div class="book-card" onclick="abrirModalLibro(${libro.id})">
                     <div class="book-cover">
@@ -364,12 +372,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Renderizar la página de Mi Lista dinámicamente
-    window.renderizarMiLista = function() {
+    window.renderizarMiLista = function () {
         if (!myListContainer) return;
-        
+
         const idsGuardados = obtenerLibrosGuardados();
         const librosGuardados = datosLibros.filter(libro => idsGuardados.includes(libro.id));
-        
+
         if (librosGuardados.length === 0) {
             myListContainer.innerHTML = '<p style="color: var(--reader-text-muted); text-align: center; width: 100%; grid-column: 1 / -1; padding: 2rem;">Tu lista está vacía. Explora el inicio para agregar libros.</p>';
             return;
@@ -379,10 +387,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const paginaMarcador = libro.pagina_marcador || 0;
             const totalPaginas = libro.paginas || 0;
             const porcentajeProgreso = totalPaginas > 0 ? Math.round((paginaMarcador / totalPaginas) * 100) : 0;
-            
+
             let textoEstado = 'En Lista';
             let claseEstado = 'progress';
-            
+
             if (porcentajeProgreso === 100) {
                 textoEstado = 'Completado';
                 claseEstado = 'completed';

@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 2. Consultar la BD para obtener el progreso actualizado y sincronizarlo
         if (currentUser) {
-            fetch(`/api/favoritos/${currentUser.id}`)
+            fetch(`/api/favoritos/${currentUser.id || currentUser.id_usuario}`)
                 .then(res => res.json())
                 .then(favorites => {
                     const fav = Array.isArray(favorites) ? favorites.find(f => f.book_id === bookId) : null;
@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    user_id: currentUser.id,
+                    user_id: (currentUser.id || currentUser.id_usuario),
                     book_id: bookId,
                     bookmark_page: pageNum
                 })
@@ -310,7 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    user_id: currentUser.id,
+                    user_id: (currentUser.id || currentUser.id_usuario),
                     book_id: bookId,
                     bookmark_page: 0
                 })
@@ -508,7 +508,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        user_id: currentUser.id,
+                        user_id: (currentUser.id || currentUser.id_usuario),
                         book_id: bookId,
                         rating: currentRating,
                         content: reviewText

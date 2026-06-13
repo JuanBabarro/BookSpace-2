@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let isSuccess = false;
             try {
-                const response = await fetch(`/api/auth/update-profile/${currentUser.id}`, {
+                const response = await fetch(`/api/auth/update-profile/${currentUser.id || currentUser.id_usuario}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
             '/images/image/Misterio2.webp'
         ];
 
-        fetch(`/api/resenas/user/${currentUser.id}`)
+        fetch(`/api/resenas/user/${currentUser.id || currentUser.id_usuario}`)
             .then(res => res.json())
             .then(reviews => {
                 // Update badge

@@ -9,7 +9,7 @@ const conexion = mysql.createPool({
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
-    connectTimeout: 30000       // 30 segundos para conectar (BD en la nube puede ser lenta)
+    connectTimeout: 30000
 });
 
 module.exports = conexion;
