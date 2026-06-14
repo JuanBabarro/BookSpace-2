@@ -3,16 +3,16 @@
   "short_name": "BookSpace",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0f0b09",
+  "background_color": "#000000",
   "theme_color": "#0f0b09",
   "icons": [
     {
-      "src": "/images/b5115b72-8826-4cb9-ac17-2b6836d731e0.png",
+      "src": "/images/logoBookSpace.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/images/b5115b72-8826-4cb9-ac17-2b6836d731e0.png",
+      "src": "/images/logoBookSpace.png",
       "sizes": "512x512",
       "type": "image/png"
     }
