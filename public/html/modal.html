@@ -1,0 +1,41 @@
+<div class="modal-overlay" id="bookModal">
+    <div class="glass-card book-modal">
+        <button class="close-modal" id="closeModal">
+            <span class="iconify" data-icon="mdi:close"></span>
+        </button>
+
+        <div class="modal-content">
+            <div class="modal-left">
+                <div class="modal-cover-bg" id="modalCoverBg"></div>
+                <img src="" alt="" id="modalBookCover">
+            </div>
+            <div class="modal-right">
+                <h2 id="modalBookTitle"></h2>
+                <p class="modal-author" id="modalBookAuthor"></p>
+
+                <div class="modal-rating" style="display: flex; gap: 5px; margin-bottom: 1.5rem; color: #ffb74d;">
+                    <span class="iconify" data-icon="mdi:star"></span>
+                    <span class="iconify" data-icon="mdi:star"></span>
+                    <span class="iconify" data-icon="mdi:star"></span>
+                    <span class="iconify" data-icon="mdi:star"></span>
+                    <span class="iconify" data-icon="mdi:star-half-full"></span>
+                </div>
+
+                <p class="modal-description" id="modalBookDescription">
+                    Cargando descripción...
+                </p>
+
+                <div class="modal-actions">
+                    <button class="btn-primary" id="readNowBtn">
+                        <span class="iconify" data-icon="mdi:book-open-page-variant"></span>
+                        Leer Ahora
+                    </button>
+                    <button class="btn-secondary" id="modalListBtn">
+                        <span class="iconify" data-icon="mdi:bookmark-outline"></span>
+                        Añadir a mi Lista
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

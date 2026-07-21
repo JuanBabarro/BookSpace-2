@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Lista | Biblioteca Digital</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;700;800&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap"
+        rel="stylesheet">
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <!-- CSS -->
+    <script src="/js/theme.js"></script>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/mylist.css">
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0f0b09">
+    <link rel="apple-touch-icon" href="/images/b5115b72-8826-4cb9-ac17-2b6836d731e0.png">
+</head>
+
+<body class="dashboard-layout">
+    <nav class="navbar">
+        <a href="/inicio" class="logo">
+            <span class="iconify" data-icon="game-icons:book-cover"></span>
+            BookSpace
+        </a>
+        <div class="nav-actions">
+            <button class="nav-link theme-toggle-btn" title="Alternar tema">
+                <span class="iconify" data-icon="mdi:weather-sunny"></span>
+            </button>
+            <a href="/mi-lista" class="nav-link active" title="mi Lista"><span class="iconify"
+                    data-icon="mdi:bookmark-multiple"></span></a>
+            <a href="#" class="nav-link" title="notificaciones"><span class="iconify"
+                    data-icon="mdi:bell-outline"></span></a>
+            <div class="nav-dropdown">
+                <a href="#" class="nav-link" id="configBtn" title="configuracion">
+                    <span class="iconify" data-icon="mdi:cog-outline"></span>
+                </a>
+                <div class="dropdown-menu" id="configDropdown">
+                    <a href="/perfil" class="dropdown-item">
+                        <span class="iconify" data-icon="mdi:account-circle-outline"></span>
+                        Mi Perfil
+                    </a>
+                    <a href="/logout" class="dropdown-item logout">
+                        <span class="iconify" data-icon="mdi:logout"></span>
+                        Cerrar Sesión
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <header class="list-header">
+            <h1>Mi Lista Personal</h1>
+            <p>Continúa donde lo dejaste o gestiona tus lecturas pendientes.</p>
+            <div class="search-box-container">
+                <div class="rustic-search-input">
+                    <span class="iconify" data-icon="mdi:magnify"></span>
+                    <input type="text" id="listSearch" placeholder="Busca en tu lista personal...">
+                </div>
+            </div>
+        </header>
+
+        <div class="mylist-container" id="myListContainer">
+            <!-- Dynamic content will be injected here -->
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span class="iconify" data-icon="game-icons:book-cover"></span>
+                BookSpace
+            </div>
+            <p class="copyright">&copy; 2026 Biblioteca Digital. Elegancia y minimismo literario.</p>
+            <div class="footer-social">
+                <a href="#" class="social-link"><span class="iconify" data-icon="mdi:instagram"></span></a>
+                <a href="#" class="social-link"><span class="iconify" data-icon="mdi:twitter"></span></a>
+                <a href="#" class="social-link"><span class="iconify" data-icon="mdi:facebook"></span></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/dashboard.js"></script>
+
+    <!-- PWA Service Worker Registration -->
+    <script src="../js/pwa.js"></script>
+</body>
+
+</html>

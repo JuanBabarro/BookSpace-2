@@ -1,0 +1,736 @@
+/* Reader Page - Final Replica with Home Background */
+
+:root {
+    --reader-gold: #c2a170;
+    --reader-panel-bg: rgba(15, 11, 9, 0.7);
+    --reader-dark: #0f0b09;
+    --reader-btn-bg: rgba(255, 255, 255, 0.05);
+    --reader-text-muted: #a09e9c;
+}
+
+body.reader-page-body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Adjusting the Home Background for the Reader */
+body.dashboard-layout.reader-page-body {
+    background-image: 
+        radial-gradient(circle at center, rgba(15, 11, 9, 0.7) 0%, rgba(15, 11, 9, 0.95) 100%),
+        url('../images/b5115b72-8826-4cb9-ac17-2b6836d731e0.png');
+}
+
+/* Navbar Fixes */
+.navbar {
+    position: relative;
+    z-index: 1000;
+}
+
+/* Dropdown Menu Styles (Copied from dashboard.css for the reader) */
+.nav-dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 15px);
+    right: 0;
+    min-width: 200px;
+    background: rgba(15, 11, 9, 0.95);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+    z-index: 1100;
+}
+
+.dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    color: #f5f0e6;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background: rgba(194, 161, 112, 0.1);
+    color: #c2a170;
+}
+
+/* Main Layout */
+.reader-main-layout {
+    display: flex;
+    flex: 1;
+    padding: 2rem 5%;
+    gap: 2.5rem;
+    overflow: hidden;
+    align-items: flex-start;
+}
+
+/* Sidebar Controls */
+.sidebar-controls {
+    width: 300px;
+    flex-shrink: 0;
+}
+
+.sidebar-controls .control-box {
+    padding: 2rem 1.5rem;
+    background: var(--reader-panel-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(194, 161, 112, 0.2);
+    border-radius: 0 30px 0 30px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.control-title {
+    color: var(--reader-gold);
+    text-align: center;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.8rem;
+}
+
+.progress-bar-container {
+    height: 10px;
+    background: #000;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: var(--reader-gold);
+}
+
+.progress-text {
+    font-size: 0.8rem;
+    color: var(--reader-text-muted);
+    text-align: center;
+}
+
+.sidebar-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin: 2.5rem 0;
+}
+
+.action-btn {
+    background: var(--reader-btn-bg);
+    border: 1px solid rgba(194, 161, 112, 0.15);
+    color: #fff;
+    padding: 1rem;
+    border-radius: 0 15px 0 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.action-btn .iconify {
+    font-size: 1.4rem;
+    color: var(--reader-gold);
+}
+
+.action-btn:hover {
+    background: rgba(194, 161, 112, 0.1);
+    border-color: var(--reader-gold);
+}
+
+.sidebar-stats {
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--reader-text-muted);
+}
+
+.stat-value {
+    color: var(--reader-gold);
+    font-weight: 700;
+}
+
+/* Main Panel */
+.reader-panel {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-container {
+    flex: 1;
+    background: var(--reader-panel-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(194, 161, 112, 0.2);
+    border-top: 3px solid var(--reader-gold);
+    border-radius: 0 40px 0 40px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+.panel-header {
+    padding: 0.4rem 1.5rem;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(194, 161, 112, 0.2);
+    z-index: 2;
+}
+.book-info {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.mini-cover {
+    width: 35px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.text-info h1 {
+    font-size: 1.1rem;
+    margin: 0;
+    color: var(--reader-gold);
+}
+
+.author {
+    font-size: 0.8rem;
+    margin: 0;
+    color: var(--reader-text-muted);
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+}
+
+.zoom-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.zoom-btn.circle {
+    width: 30px;
+    height: 30px;
+    background: var(--reader-gold);
+    border: none;
+    color: #000;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.zoom-percent {
+    font-weight: 600;
+    color: var(--reader-gold);
+    font-size: 0.8rem;
+    background: #111;
+    border: 1px solid var(--reader-gold);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.zoom-btn.expand {
+    background: none;
+    border: none;
+    color: var(--reader-gold);
+    font-size: 1.4rem;
+    cursor: pointer;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pdf-content-area {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 1rem;
+    overflow: auto;
+    display: block;
+    position: relative;
+}
+
+.pdf-sheet {
+    background: #fff;
+    width: 100%;
+    max-width: 800px;
+    height: 100%;
+    margin: 0 auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+#pdfViewer {
+    width: 100%;
+    height: 100%;
+}
+
+.external-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #bbb;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.external-btn:hover {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.8);
+    border-color: var(--reader-gold);
+}
+
+/* =============================================
+   Bookmark Modal
+   ============================================= */
+
+.bookmark-modal-card {
+    width: 90%;
+    max-width: 400px;
+    background: rgba(12, 9, 7, 0.95);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(194, 161, 112, 0.25);
+    border-radius: 0 28px 0 28px; /* matches reader's asymmetric style */
+    overflow: hidden;
+    position: relative;
+    animation: bookmarkFadeIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(194, 161, 112, 0.1);
+}
+
+@keyframes bookmarkFadeIn {
+    from { transform: scale(0.9) translateY(-10px); opacity: 0; }
+    to   { transform: scale(1) translateY(0);       opacity: 1; }
+}
+
+/* Gold top accent bar */
+.bookmark-modal-accent {
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--reader-gold), transparent);
+}
+
+/* Header row */
+.bookmark-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 1.8rem 1.2rem;
+}
+
+.bookmark-modal-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(194, 161, 112, 0.12);
+    border: 1px solid rgba(194, 161, 112, 0.3);
+    border-radius: 0 12px 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--reader-gold);
+    font-size: 1.4rem;
+}
+
+.bookmark-modal-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--reader-gold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.bookmark-modal-subtitle {
+    font-size: 0.8rem;
+    color: var(--reader-text-muted);
+    margin: 2px 0 0;
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+}
+
+.bookmark-close-btn {
+    margin-left: auto;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--reader-text-muted);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.bookmark-close-btn:hover {
+    background: rgba(230, 126, 115, 0.15);
+    border-color: rgba(230, 126, 115, 0.4);
+    color: #e67e73;
+    transform: rotate(90deg);
+}
+
+/* Divider */
+.bookmark-modal-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.07);
+    margin: 0 1.8rem;
+}
+
+/* Input area */
+.bookmark-input-group {
+    padding: 1.5rem 1.8rem 1rem;
+}
+
+.bookmark-input-label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--reader-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.7rem;
+}
+
+.bookmark-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(194, 161, 112, 0.2);
+    border-radius: 0 14px 0 14px;
+    padding: 0.8rem 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.bookmark-input-wrapper:focus-within {
+    border-color: rgba(194, 161, 112, 0.6);
+    background: rgba(194, 161, 112, 0.06);
+    box-shadow: 0 0 0 3px rgba(194, 161, 112, 0.08);
+}
+
+.bookmark-input-wrapper .iconify {
+    color: var(--reader-gold);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    opacity: 0.8;
+}
+
+.bookmark-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    outline: none;
+    min-width: 0;
+}
+
+.bookmark-input::placeholder {
+    color: rgba(160, 158, 156, 0.5);
+    font-weight: 400;
+}
+
+/* Remove number input arrows */
+.bookmark-input::-webkit-inner-spin-button,
+.bookmark-input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.bookmark-input[type=number] { -moz-appearance: textfield; }
+
+/* Actions */
+.bookmark-modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 0.5rem 1.8rem 1.8rem;
+}
+
+.bookmark-save-btn {
+    background: var(--reader-gold);
+    color: #0f0b09;
+    border: none;
+    border-radius: 0 14px 0 14px;
+    padding: 0.9rem 1.2rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    letter-spacing: 0.05em;
+}
+
+.bookmark-save-btn:hover {
+    background: #d4b68a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(194, 161, 112, 0.35);
+}
+
+.bookmark-save-btn:active { transform: translateY(0); }
+
+.bookmark-clear-btn {
+    background: transparent;
+    color: rgba(230, 126, 115, 0.8);
+    border: 1px solid rgba(230, 126, 115, 0.2);
+    border-radius: 0 10px 0 10px;
+    padding: 0.7rem 1.2rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.bookmark-clear-btn:hover {
+    background: rgba(230, 126, 115, 0.1);
+    border-color: rgba(230, 126, 115, 0.45);
+    color: #e67e73;
+}
+
+/* =============================================
+   Responsive adjustments for Mobile/Tablet
+   ============================================= */
+@media (max-width: 900px) {
+    .reader-main-layout {
+        padding: 1rem;
+        gap: 0;
+        position: relative;
+    }
+
+    /* Hide sidebar in normal flow, turn it into an overlay drawer */
+    .sidebar-controls {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 300px;
+        z-index: 2000;
+        transform: translateX(-100%);
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebar-controls.open {
+        transform: translateX(0);
+    }
+
+    .sidebar-controls .control-box {
+        height: 100%;
+        border-radius: 0 30px 0 0; /* flat bottom on mobile drawer */
+        box-shadow: 15px 0 45px rgba(0, 0, 0, 0.9);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        position: relative;
+        background: rgba(12, 9, 7, 0.95) !important;
+        backdrop-filter: blur(35px) !important;
+        -webkit-backdrop-filter: blur(35px) !important;
+        border: none;
+        border-right: 1px solid rgba(194, 161, 112, 0.25);
+    }
+
+    /* Add overlay background when sidebar is open */
+    .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        z-index: 1999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .sidebar-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Show Close button inside drawer */
+    .close-sidebar-btn {
+        display: flex !important;
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--reader-text-muted);
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+        z-index: 2001;
+    }
+
+    .close-sidebar-btn:hover {
+        background: rgba(230, 126, 115, 0.15);
+        color: #e67e73;
+        border-color: rgba(230, 126, 115, 0.35);
+        transform: rotate(90deg);
+    }
+
+    /* Toggle controls button in reader header */
+    .btn-toggle-controls {
+        display: flex !important;
+        align-items: center;
+        gap: 8px;
+        background: rgba(194, 161, 112, 0.12);
+        border: 1px solid rgba(194, 161, 112, 0.3);
+        color: var(--reader-gold);
+        padding: 0.6rem 1.2rem;
+        border-radius: 0 12px 0 12px;
+        font-family: 'Outfit', sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        cursor: pointer;
+        font-size: 0.8rem;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+    }
+
+    .btn-toggle-controls .iconify {
+        font-size: 1.1rem;
+    }
+
+    .btn-toggle-controls:hover {
+        background: rgba(194, 161, 112, 0.25);
+        border-color: var(--reader-gold);
+        transform: translateY(-1px);
+    }
+
+    /* Make PDF container fill the screen on mobile */
+    .reader-panel {
+        width: 100%;
+        height: 100%;
+    }
+
+    .panel-container {
+        border-radius: 0 20px 0 20px;
+    }
+
+    .panel-header {
+        padding: 0.8rem 1.2rem;
+        gap: 1rem;
+    }
+
+    .pdf-content-area {
+        padding: 0.25rem;
+    }
+
+    .zoom-controls {
+        margin-left: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .panel-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.8rem;
+        padding: 1rem;
+    }
+
+    .book-info {
+        width: 100%;
+    }
+
+    .zoom-controls {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding-top: 0.8rem;
+    }
+    
+    .btn-toggle-controls {
+        align-self: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .reader-main-layout {
+        padding: 0.25rem;
+    }
+    
+    .panel-container {
+        border-radius: 0;
+        border: none;
+    }
+    
+    .pdf-content-area {
+        padding: 0;
+    }
+}

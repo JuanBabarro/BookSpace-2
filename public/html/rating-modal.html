@@ -1,0 +1,80 @@
+<!-- Rating Modal -->
+<div class="modal-overlay" id="ratingModal" style="display: none;">
+    <div class="rating-modal-card">
+
+        <!-- Gold accent bar -->
+        <div class="rating-modal-accent"></div>
+
+        <!-- Header -->
+        <div class="rating-modal-header">
+            <div class="rating-modal-icon">
+                <span class="iconify" data-icon="mdi:star"></span>
+            </div>
+            <div>
+                <h2 class="rating-modal-title">Calificar Libro</h2>
+                <p class="rating-modal-subtitle">Tu opinión ayuda a la comunidad</p>
+            </div>
+            <button id="closeRatingModal" class="rating-close-btn">
+                <span class="iconify" data-icon="mdi:close"></span>
+            </button>
+        </div>
+
+        <!-- Divider -->
+        <div class="rating-modal-divider"></div>
+
+        <!-- Body -->
+        <div class="rating-modal-body">
+            <p class="rating-question">¿Cómo calificarías este libro?</p>
+            <p class="rating-book-name" id="ratingBookName">"Cargando..."</p>
+
+            <!-- Stars: display layer + invisible hit zones -->
+            <div class="rating-stars-container" id="ratingStarsContainer">
+                <!-- Visual display only -->
+                <div class="stars-display">
+                    <span class="iconify star-display" data-icon="mdi:star-outline" id="starD1"></span>
+                    <span class="iconify star-display" data-icon="mdi:star-outline" id="starD2"></span>
+                    <span class="iconify star-display" data-icon="mdi:star-outline" id="starD3"></span>
+                    <span class="iconify star-display" data-icon="mdi:star-outline" id="starD4"></span>
+                    <span class="iconify star-display" data-icon="mdi:star-outline" id="starD5"></span>
+                </div>
+                <!-- 10 invisible clickable zones on top -->
+                <div class="stars-hitzone">
+                    <div class="star-hit" data-value="0.5"></div>
+                    <div class="star-hit" data-value="1"></div>
+                    <div class="star-hit" data-value="1.5"></div>
+                    <div class="star-hit" data-value="2"></div>
+                    <div class="star-hit" data-value="2.5"></div>
+                    <div class="star-hit" data-value="3"></div>
+                    <div class="star-hit" data-value="3.5"></div>
+                    <div class="star-hit" data-value="4"></div>
+                    <div class="star-hit" data-value="4.5"></div>
+                    <div class="star-hit" data-value="5"></div>
+                </div>
+            </div>
+            <p class="rating-label" id="ratingLabel">Selecciona una calificación</p>
+
+            <!-- Review textarea -->
+            <div class="rating-textarea-group">
+                <label class="rating-textarea-label">Escribe una reseña <span>(opcional)</span></label>
+                <textarea id="ratingReview" class="rating-textarea" maxlength="500" placeholder="Comparte tu experiencia con este libro..."></textarea>
+                <span class="rating-char-count"><span id="ratingCharCount">0</span>/500 caracteres</span>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="rating-modal-divider"></div>
+
+        <!-- Actions -->
+        <div class="rating-modal-actions">
+            <button id="cancelRatingBtn" class="rating-cancel-btn">
+                <span class="iconify" data-icon="mdi:close-circle-outline"></span>
+                Cancelar
+            </button>
+            <button id="saveRatingBtn" class="rating-save-btn" disabled>
+                <span class="iconify" data-icon="mdi:star-check-outline"></span>
+                Guardar Calificación
+            </button>
+        </div>
+
+    </div>
+</div>

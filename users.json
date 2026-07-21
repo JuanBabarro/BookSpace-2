@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "nombre": "Admin",
+    "apellido": "Principal",
+    "nombre_usuario": "admin",
+    "email": "admin@bookapp.com",
+    "contrasena": "admin123",
+    "rol": "admin"
+  },
+  {
+    "id": 2,
+    "nombre": "Juan",
+    "apellido": "Perez",
+    "nombre_usuario": "juanperez",
+    "email": "juan@bookapp.com",
+    "contrasena": "user123",
+    "rol": "user"
+  }
+]

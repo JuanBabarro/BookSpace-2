@@ -1,0 +1,557 @@
+/* Global Design System - Minimalist & Elegant */
+
+:root {
+    --bg-dark: #0f0b09;
+    --card-bg: rgba(30, 24, 20, 0.7);
+    --primary: #c2a170;
+    --primary-hover: #d4b68a;
+    --text-main: #f5f0e6;
+    --text-muted: #a89a8c;
+    --accent: #4a5d4b;
+    --error: #e67e73;
+    --glass: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(194, 161, 112, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(74, 93, 75, 0.05) 0%, transparent 40%),
+        url('../images/dashboard-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--text-main);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+body.auth-page {
+    background-image:
+        radial-gradient(circle at center, rgba(15, 11, 9, 0.4) 0%, rgba(15, 11, 9, 0.8) 100%),
+        url('../images/b5115b72-8826-4cb9-ac17-2b6836d731e0.png');
+}
+
+/* Glassmorphism Card */
+.glass-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    padding: 2.5rem;
+    width: 100%;
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+}
+
+/* Inputs */
+.input-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper .iconify {
+    position: absolute;
+    left: 1rem;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+}
+
+.input-wrapper input {
+    width: 100%;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 0.8rem 1rem 0.8rem 2.8rem;
+    color: var(--text-main);
+    font-family: var(--font-body);
+    transition: all 0.3s ease;
+}
+
+.input-wrapper input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 0 4px rgba(194, 161, 112, 0.1);
+}
+
+/* Buttons */
+.btn-primary {
+    background: var(--primary);
+    color: var(--bg-dark);
+    border: none;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(194, 161, 112, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: var(--error);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-secondary:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(230, 126, 115, 0.3);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .glass-card {
+        padding: 1.5rem;
+    }
+
+    body {
+        padding: 1rem;
+    }
+}
+
+/* Common Auth Styles */
+.footer-links {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.footer-links a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Button Loading Effect */
+.btn-primary.btn-loading {
+    position: relative;
+    overflow: hidden;
+    pointer-events: none; /* Disable clicks while loading */
+}
+
+.btn-primary.btn-loading::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background-color: var(--text-main); /* Paint with a different color */
+    opacity: 0.2;
+    z-index: 1;
+    animation: paintButton 1.2s ease-in-out forwards;
+}
+
+.btn-primary span {
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes paintButton {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+/* Footer full-width layout */
+footer .footer-content {
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+footer {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* ==========================================
+   LIGHT MODE DESIGN SYSTEM
+   ========================================== */
+html.light-mode {
+    --bg-dark: #f6f3eb; /* Fondo suave y cálido */
+    --card-bg: rgba(255, 255, 255, 0.85); /* Vidrio claro elegante */
+    --primary: #94723c; /* Dorado oscuro con buen contraste en fondo claro */
+    --primary-hover: #b08d56;
+    --text-main: #2b231c; /* Marrón-gris muy oscuro para máxima legibilidad */
+    --text-muted: #73675a;
+    --accent: #384e3a;
+    --glass: rgba(0, 0, 0, 0.02);
+    --glass-border: rgba(0, 0, 0, 0.08);
+    --shadow: 0 10px 30px rgba(43, 35, 28, 0.08);
+    
+    /* Configuración para el lector */
+    --reader-gold: #94723c;
+    --reader-panel-bg: rgba(255, 255, 255, 0.85);
+    --reader-dark: #f6f3eb;
+    --reader-btn-bg: rgba(0, 0, 0, 0.04);
+    --reader-text-muted: #73675a;
+}
+
+/* Modificaciones estructurales en Modo Claro */
+html.light-mode body {
+    color: var(--text-main);
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(148, 114, 60, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(56, 78, 58, 0.04) 0%, transparent 40%),
+        url('../images/dashboard-bg.png');
+}
+
+html.light-mode body.auth-page {
+    background-image:
+        radial-gradient(circle at center, rgba(246, 243, 235, 0.25) 0%, rgba(246, 243, 235, 0.5) 100%),
+        url('../images/b5115b72-8826-4cb9-ac17-2b6836d731e0.png');
+}
+
+html.light-mode body.dashboard-layout {
+    background-image:
+        radial-gradient(circle at center, rgba(246, 243, 235, 0.3) 0%, rgba(246, 243, 235, 0.55) 100%),
+        url('../images/b5115b72-8826-4cb9-ac17-2b6836d731e0.png');
+}
+
+html.light-mode .navbar {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-top: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+html.light-mode .navbar .logo {
+    color: var(--primary);
+}
+
+html.light-mode .dropdown-menu {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+html.light-mode .dropdown-item {
+    color: var(--text-main);
+}
+
+html.light-mode .dropdown-item:hover {
+    background: rgba(148, 114, 60, 0.08);
+    color: var(--primary);
+}
+
+html.light-mode .nav-link {
+    background: rgba(0, 0, 0, 0.03);
+    color: var(--text-main);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+html.light-mode .nav-link:hover {
+    color: #fff;
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+/* Botón de Alternancia de Tema */
+.theme-toggle-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    color: var(--text-main);
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.4rem;
+    transition: all 0.4s ease;
+}
+
+.theme-toggle-btn:hover {
+    color: var(--bg-dark);
+    background: var(--primary);
+    border-color: var(--primary);
+    transform: scale(1.1);
+}
+
+html.light-mode .theme-toggle-btn {
+    background: rgba(0, 0, 0, 0.03);
+    color: var(--text-main);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+html.light-mode .theme-toggle-btn:hover {
+    color: #fff;
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.auth-theme-toggle {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+}
+
+/* Ajustes de Inputs en Modo Claro */
+html.light-mode .input-wrapper input {
+    color: var(--text-main);
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+html.light-mode .input-wrapper input:focus {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: var(--primary);
+}
+
+/* Modales en Modo Claro */
+html.light-mode .book-modal,
+html.light-mode .bookmark-modal-card,
+html.light-mode .info-content {
+    background: #fdfcf9;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: var(--text-main);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
+}
+
+html.light-mode .modal-left {
+    background: #f5f0e6;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+html.light-mode .close-modal,
+html.light-mode .bookmark-close-btn {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    color: var(--text-main);
+}
+
+html.light-mode .close-modal:hover,
+html.light-mode .bookmark-close-btn:hover {
+    background: var(--error);
+    color: #fff;
+}
+
+html.light-mode .bookmark-input {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: var(--text-main);
+}
+
+/* Botón de cierre en controles de lector */
+html.light-mode body.reader-page-body {
+    color: var(--text-main);
+}
+
+/* ==========================================
+   LIGHT MODE - CONTRAST FIXES
+   Títulos y textos con bajo contraste en modo claro
+   ========================================== */
+
+/* Hero section - título principal */
+html.light-mode .hero-section h1 {
+    color: #1a120b;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Hero description */
+html.light-mode .hero-description {
+    color: #4a3f35;
+}
+
+/* Buscador - borde y fondo visibles en modo claro */
+html.light-mode .rustic-search-input {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(148, 114, 60, 0.3);
+    box-shadow: 0 4px 20px rgba(43, 35, 28, 0.08);
+}
+
+html.light-mode .rustic-search-input:focus-within {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(43, 35, 28, 0.1), 0 0 0 4px rgba(148, 114, 60, 0.12);
+}
+
+html.light-mode .rustic-search-input input {
+    color: #1a120b;
+}
+
+html.light-mode .rustic-search-input input::placeholder {
+    color: #8a7a6a;
+}
+
+html.light-mode .rustic-search-input .iconify {
+    color: #8a7a6a;
+}
+
+/* Labels de formulario */
+html.light-mode .input-group label {
+    color: #4a3f35;
+    font-weight: 600;
+}
+
+/* Iconos de los inputs */
+html.light-mode .input-wrapper .iconify {
+    color: #7a6a5a;
+}
+
+/* Lista (mylist) - header */
+html.light-mode .list-header h1 {
+    color: #1a120b;
+    text-shadow: none;
+}
+
+html.light-mode .list-header p {
+    color: #4a3f35;
+}
+
+/* List items - fondo en modo claro */
+html.light-mode .list-item {
+    background: rgba(255, 255, 255, 0.75);
+    border-color: rgba(148, 114, 60, 0.2);
+}
+
+html.light-mode .list-item:hover {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: var(--primary);
+}
+
+/* Barra de progreso de fondo en modo claro */
+html.light-mode .progress-bar-container {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+/* Perfil - nombres y textos */
+html.light-mode .profile-header-card h2 {
+    color: #1a120b;
+}
+
+html.light-mode .profile-header-card p {
+    color: var(--primary);
+}
+
+html.light-mode .section-header h2 {
+    color: #1a120b;
+}
+
+html.light-mode .profile-form-card h2 {
+    color: #1a120b;
+}
+
+html.light-mode .avatar-toggle-btn {
+    color: #4a3f35;
+}
+
+/* Footer en modo claro */
+html.light-mode footer {
+    background: rgba(255, 255, 255, 0.7);
+    border-top: 1px solid rgba(148, 114, 60, 0.2);
+}
+
+html.light-mode .copyright {
+    color: #5a4f45;
+}
+
+html.light-mode .social-link {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.08);
+    color: #5a4f45;
+}
+
+/* Página de login/registro - texto de enlace */
+html.light-mode .footer-links p {
+    color: #4a3f35;
+}
+
+/* Detalles del libro sobre la portada - sin cambios pues tiene fondo oscuro propio */
+/* Pero en modo claro se puede mejorar el fondo */
+html.light-mode .book-details {
+    background: rgba(20, 14, 10, 0.88);
+    border-color: var(--primary);
+}

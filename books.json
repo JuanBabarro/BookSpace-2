@@ -1,0 +1,137 @@
+[
+    {
+        "id": 1,
+        "title": "Hannibal",
+        "author": "Thomas Harris",
+        "cover": "/images/image/Hannibal.jpg",
+        "category": "CRIMEN",
+        "googleDriveId": "1ypRGZNW3SQi1VwtRE822vA0PYugRIphB",
+        "description": "La secuela del clásico donde Hannibal Lecter está suelto en Europa."
+    },
+    {
+        "id": 2,
+        "title": "Crimen y Castigo",
+        "author": "Fiódor Dostoyevski",
+        "cover": "/images/image/CrimenyCastigo.jpg",
+        "category": "FICCION",
+        "googleDriveId": "183muXXJkD_eR4YYuXB7dQc8-7fir8-9T",
+        "description": "Un estudiante comete un asesinato y lidia con las profundas secuelas psicológicas."
+    },
+    {
+        "id": 3,
+        "title": "Guerra y Paz",
+        "author": "León Tolstói",
+        "cover": "/images/image/GuerrayPaz.jpeg",
+        "category": "HISTORICO",
+        "googleDriveId": "1NVsMq2u5-ov5SM4DMZemJmIGjap4xYTL",
+        "description": "Una obra monumental sobre la invasión napoleónica de Rusia."
+    },
+    {
+        "id": 4,
+        "title": "It (Eso)",
+        "author": "Stephen King",
+        "cover": "/images/image/It.jpeg",
+        "category": "TERROR",
+        "googleDriveId": "1QjvzOPbcyHMSpU0HRb22wPT_HvFGZ5sN",
+        "description": "Un grupo de amigos enfrenta a un monstruo ancestral en el pequeño pueblo de Derry."
+    },
+    {
+        "id": 5,
+        "title": "El Lobo Estepario",
+        "author": "Hermann Hesse",
+        "cover": "/images/image/Lobo.jpg",
+        "category": "FICCION",
+        "googleDriveId": "1hPrbBg_J4urmff3J15QIOwbCW3ukZG3f",
+        "description": "La historia de Harry Haller y su lucha entre su naturaleza humana y su lado oscuro, el lobo."
+    },
+    {
+        "id": 6,
+        "title": "Los Hermanos Karamazov",
+        "author": "Fiódor Dostoyevski",
+        "cover": "/images/image/LosHermanos.jpg",
+        "category": "FICCION",
+        "googleDriveId": "1A_ovO3iECz7RNlnBX2HBDH3wOIggnnFV",
+        "description": "Un intenso drama familiar sobre la moral, la fe y el libre albedrío."
+    },
+    {
+        "id": 7,
+        "title": "El Renacido",
+        "author": "Michael Punke",
+        "cover": "/images/image/Renacido.webp",
+        "category": "AVENTURA",
+        "googleDriveId": "1IsqT_4WILe3JjJxWng85ywkddqa4gssL",
+        "description": "La increíble historia real de supervivencia y venganza de Hugh Glass."
+    },
+    {
+        "id": 8,
+        "title": "El Silencio de los Inocentes",
+        "author": "Thomas Harris",
+        "cover": "/images/image/Silencio.GIF",
+        "category": "CRIMEN",
+        "googleDriveId": "1BtuWjMTllwZYbFVdk0UH93IHlI08ojP1",
+        "description": "Clarice Starling busca la ayuda del Dr. Lecter para atrapar a un asesino en serie."
+    },
+    {
+        "id": 9,
+        "title": "Vida y Destino",
+        "author": "Vasili Grossman",
+        "cover": "/images/image/VidayDestino.GIF",
+        "category": "HISTORICO",
+        "googleDriveId": "1OFAci81RQloEmzYskvwXMDcRz823SyrC",
+        "description": "Un fresco de la sociedad soviética durante la batalla de Stalingrado."
+    },
+    {
+        "id": 10,
+        "title": "Cementerio de Animales",
+        "author": "Stephen King",
+        "cover": "/images/image/Animales.jpg",
+        "category": "TERROR",
+        "googleDriveId": "1ts7pkVQbXaej7Ig8aJNCPTCUVS0Zg1CK",
+        "description": "Un médico descubre un antiguo cementerio que tiene el poder de revivir a los muertos."
+    },
+    {
+        "id": 11,
+        "title": "Berlín",
+        "author": "Antony Beevor",
+        "cover": "/images/image/Berlin.jpg",
+        "category": "HISTORICO",
+        "googleDriveId": "1fYcExiaN_5XC06FV2aq870t8r3I_o_Xp",
+        "description": "La caída de la Alemania nazi y el fin de la Segunda Guerra Mundial."
+    },
+    {
+        "id": 12,
+        "title": "Por una causa justa",
+        "author": "Vasili Grossman",
+        "cover": "/images/image/CausaJusta.jpg",
+        "category": "HISTORICO",
+        "googleDriveId": "1zTB84gh9ly2dwKPcHvOJWRRhAHqU-S4B",
+        "description": "Una profunda inmersión en la sociedad rusa previa a la invasión alemana."
+    },
+    {
+        "id": 13,
+        "title": "El Diario",
+        "author": "Ana Frank",
+        "cover": "/images/image/Diario.webp",
+        "category": "BIOGRAFIA",
+        "googleDriveId": "1rBfLDsO7U_kk3CRXLGUCfMRkPX-vWo8l",
+        "description": "El testimonio personal de una joven judía ocultándose durante la ocupación."
+    },
+    {
+        "id": 14,
+        "title": "Asesinato en el Orient Express",
+        "author": "Agatha Christie",
+        "cover": "/images/image/Misterio.jpg",
+        "category": "MISTERIO",
+        "googleDriveId": "19X3B8jV5-EwTkiFZ2KGpdEbohOloQfRV",
+        "description": "El detective Hércules Poirot debe resolver un asesinato en un tren atrapado en la nieve."
+    },
+    {
+        "id": 15,
+        "title": "El asesinato de Roger Ackroyd",
+        "author": "Agatha Christie",
+        "cover": "/images/image/Misterio2.webp",
+        "category": "MISTERIO",
+        "googleDriveId": "1UPoEXVFBj-3ouy-1gsd4XpTBK1D5CZID",
+        "description": "Uno de los casos más famosos de Hércules Poirot con un giro inesperado."
+    }
+]
