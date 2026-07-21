@@ -290,6 +290,6 @@ La aplicación es totalmente responsiva con breakpoints en `768px`, `480px` y `3
 
 <div align="center">
 
-Hecho con ❤️ y ☕ · **BookSpace** © 2026
+ **BookSpace** © 2026
 
 </div>
