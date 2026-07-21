@@ -287,27 +287,6 @@ El tema se aplica añadiendo la clase `light-mode` al elemento `<html>` y se per
 
 La aplicación es totalmente responsiva con breakpoints en `768px`, `480px` y `390px`. Se han aplicado ajustes específicos para pantallas pequeñas como el **iPhone 6s (375px)** en:
 
-- La caja de búsqueda de la página principal
-- El panel de controles del lector de PDF
-- El sidebar de controles en modo drawer
-
----
-
-## 🤝 Contribución
-
-1. Hacé un fork del repositorio
-2. Creá una rama para tu feature: `git checkout -b feature/nueva-funcionalidad`
-3. Commiteá tus cambios: `git commit -m 'feat: agregar nueva funcionalidad'`
-4. Pusheá la rama: `git push origin feature/nueva-funcionalidad`
-5. Abrí un Pull Request
-
----
-
-## 📄 Licencia
-
-Distribuido bajo la licencia **ISC**. Ver el archivo `package.json` para más detalles.
-
----
 
 <div align="center">
 
