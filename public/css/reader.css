@@ -734,3 +734,230 @@ body.dashboard-layout.reader-page-body {
         padding: 0;
     }
 }
+
+/* ==========================================
+   READER — LIGHT MODE
+   ========================================== */
+
+/* Background del lector */
+html.light-mode body.dashboard-layout.reader-page-body {
+    background-image:
+        radial-gradient(circle at center, rgba(252, 251, 250, 0.6) 0%, rgba(252, 251, 250, 0.85) 100%),
+        url('../images/b5115b72-8826-4cb9-ac17-2b6836d731e0.png');
+}
+
+/* Sidebar control box */
+html.light-mode .sidebar-controls .control-box {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(128, 100, 60, 0.15);
+    box-shadow: 0 12px 36px rgba(43, 37, 32, 0.05);
+}
+
+html.light-mode .control-title {
+    color: var(--reader-gold);
+    border-bottom-color: rgba(128, 100, 60, 0.12);
+}
+
+/* Progress bar del lector */
+html.light-mode .sidebar-controls .progress-bar-container {
+    background: rgba(43, 37, 32, 0.08);
+}
+
+html.light-mode .progress-text {
+    color: var(--reader-text-muted);
+}
+
+/* Botones de acción del sidebar */
+html.light-mode .action-btn {
+    background: rgba(128, 100, 60, 0.05);
+    border-color: rgba(128, 100, 60, 0.12);
+    color: var(--text-main);
+}
+
+html.light-mode .action-btn .iconify {
+    color: var(--reader-gold);
+}
+
+html.light-mode .action-btn:hover {
+    background: rgba(128, 100, 60, 0.1);
+    border-color: var(--reader-gold);
+}
+
+/* Stats del sidebar */
+html.light-mode .sidebar-stats {
+    border-top-color: rgba(128, 100, 60, 0.12);
+}
+
+html.light-mode .stat-row {
+    color: var(--reader-text-muted);
+}
+
+html.light-mode .stat-value {
+    color: var(--reader-gold);
+}
+
+/* Panel principal */
+html.light-mode .panel-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(128, 100, 60, 0.15);
+    border-top-color: var(--reader-gold);
+    box-shadow: 0 12px 40px rgba(43, 37, 32, 0.05);
+}
+
+html.light-mode .panel-header {
+    background: rgba(252, 251, 250, 0.7);
+    border-bottom-color: rgba(128, 100, 60, 0.12);
+}
+
+html.light-mode .text-info h1 {
+    color: var(--reader-gold);
+}
+
+html.light-mode .author {
+    color: var(--reader-text-muted);
+}
+
+/* Zoom controls */
+html.light-mode .zoom-percent {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: var(--reader-gold);
+    color: var(--reader-gold);
+}
+
+html.light-mode .zoom-btn.circle {
+    background: var(--reader-gold);
+    color: #fff;
+}
+
+html.light-mode .zoom-btn.expand {
+    color: var(--reader-gold);
+}
+
+/* PDF content area */
+html.light-mode .pdf-content-area {
+    background: rgba(43, 37, 32, 0.06);
+}
+
+/* Botón externo */
+html.light-mode .external-btn {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(128, 100, 60, 0.15);
+    color: var(--text-muted);
+}
+
+html.light-mode .external-btn:hover {
+    color: var(--reader-gold);
+    background: rgba(255, 255, 255, 0.95);
+    border-color: var(--reader-gold);
+}
+
+/* Móvil: botón de toggle controles */
+html.light-mode .btn-toggle-controls {
+    background: rgba(128, 100, 60, 0.08);
+    border-color: rgba(128, 100, 60, 0.2);
+    color: var(--reader-gold);
+}
+
+html.light-mode .btn-toggle-controls:hover {
+    background: rgba(128, 100, 60, 0.15);
+    border-color: var(--reader-gold);
+}
+
+/* Botón cerrar sidebar móvil */
+html.light-mode .close-sidebar-btn {
+    background: rgba(128, 100, 60, 0.06);
+    border-color: rgba(128, 100, 60, 0.12);
+    color: var(--reader-text-muted);
+}
+
+html.light-mode .close-sidebar-btn:hover {
+    background: rgba(205, 92, 84, 0.08);
+    color: var(--error);
+    border-color: rgba(205, 92, 84, 0.25);
+}
+
+/* ---- Bookmark Modal — Modo Claro ---- */
+html.light-mode .bookmark-modal-card {
+    background: rgba(255, 255, 255, 0.98);
+    border-color: rgba(128, 100, 60, 0.18);
+    box-shadow: 0 20px 60px rgba(43, 37, 32, 0.08);
+}
+
+html.light-mode .bookmark-modal-accent {
+    background: linear-gradient(90deg, transparent, var(--reader-gold), transparent);
+}
+
+html.light-mode .bookmark-modal-title {
+    color: var(--reader-gold);
+}
+
+html.light-mode .bookmark-modal-subtitle {
+    color: var(--reader-text-muted);
+}
+
+html.light-mode .bookmark-modal-icon {
+    background: rgba(128, 100, 60, 0.08);
+    border-color: rgba(128, 100, 60, 0.2);
+    color: var(--reader-gold);
+}
+
+html.light-mode .bookmark-close-btn {
+    background: rgba(128, 100, 60, 0.05);
+    border-color: rgba(128, 100, 60, 0.12);
+    color: var(--reader-text-muted);
+}
+
+html.light-mode .bookmark-close-btn:hover {
+    background: rgba(205, 92, 84, 0.08);
+    border-color: rgba(205, 92, 84, 0.25);
+    color: var(--error);
+}
+
+html.light-mode .bookmark-modal-divider {
+    background: rgba(128, 100, 60, 0.1);
+}
+
+html.light-mode .bookmark-input-label {
+    color: var(--reader-text-muted);
+}
+
+html.light-mode .bookmark-input-wrapper {
+    background: #ffffff;
+    border-color: rgba(128, 100, 60, 0.15);
+}
+
+html.light-mode .bookmark-input-wrapper:focus-within {
+    border-color: var(--primary);
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(128, 100, 60, 0.15);
+}
+
+html.light-mode .bookmark-input {
+    color: var(--text-main);
+}
+
+html.light-mode .bookmark-input::placeholder {
+    color: rgba(43, 37, 32, 0.45);
+}
+
+html.light-mode .bookmark-save-btn {
+    background: var(--reader-gold);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(128, 100, 60, 0.2);
+}
+
+html.light-mode .bookmark-save-btn:hover {
+    background: var(--primary-hover);
+    box-shadow: 0 6px 20px rgba(128, 100, 60, 0.3);
+}
+
+html.light-mode .bookmark-clear-btn {
+    color: var(--error);
+    border-color: rgba(205, 92, 84, 0.2);
+}
+
+html.light-mode .bookmark-clear-btn:hover {
+    background: rgba(205, 92, 84, 0.06);
+    border-color: var(--error);
+    color: var(--error);
+}

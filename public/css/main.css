@@ -254,78 +254,76 @@ footer {
 
 /* ==========================================
    LIGHT MODE DESIGN SYSTEM
+   Paleta cálida, suave y elegante
    ========================================== */
 html.light-mode {
-    --bg-dark: #f6f3eb; /* Fondo suave y cálido */
-    --card-bg: rgba(255, 255, 255, 0.85); /* Vidrio claro elegante */
-    --primary: #94723c; /* Dorado oscuro con buen contraste en fondo claro */
-    --primary-hover: #b08d56;
-    --text-main: #2b231c; /* Marrón-gris muy oscuro para máxima legibilidad */
-    --text-muted: #73675a;
-    --accent: #384e3a;
-    --glass: rgba(0, 0, 0, 0.02);
-    --glass-border: rgba(0, 0, 0, 0.08);
-    --shadow: 0 10px 30px rgba(43, 35, 28, 0.08);
-    
-    /* Configuración para el lector */
-    --reader-gold: #94723c;
-    --reader-panel-bg: rgba(255, 255, 255, 0.85);
-    --reader-dark: #f6f3eb;
-    --reader-btn-bg: rgba(0, 0, 0, 0.04);
-    --reader-text-muted: #73675a;
+    --bg-dark: #fbf9f5;
+    --card-bg: rgba(246, 243, 237, 0.96);
+    --primary: #7a5c2e;
+    --primary-hover: #96743f;
+    --text-main: #2b2520;
+    --text-muted: #72685e;
+    --accent: #455846;
+    --error: #cd5c54;
+    --glass: rgba(246, 243, 237, 0.85);
+    --glass-border: rgba(122, 92, 46, 0.15);
+    --shadow: 0 8px 30px rgba(43, 37, 32, 0.05);
+
+    /* Lector */
+    --reader-gold: #7a5c2e;
+    --reader-panel-bg: rgba(246, 243, 237, 0.96);
+    --reader-dark: #fbf9f5;
+    --reader-btn-bg: rgba(122, 92, 46, 0.06);
+    --reader-text-muted: #72685e;
 }
 
-/* Modificaciones estructurales en Modo Claro */
+/* ---- Body ---- */
 html.light-mode body {
     color: var(--text-main);
+    background-color: var(--bg-dark);
     background-image:
-        radial-gradient(circle at 10% 20%, rgba(148, 114, 60, 0.04) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(56, 78, 58, 0.04) 0%, transparent 40%),
+        radial-gradient(ellipse at 15% 25%, rgba(122, 92, 46, 0.05) 0%, transparent 45%),
+        radial-gradient(ellipse at 85% 75%, rgba(69, 88, 70, 0.04) 0%, transparent 45%),
         url('../images/dashboard-bg.png');
 }
 
 html.light-mode body.auth-page {
     background-image:
-        radial-gradient(circle at center, rgba(246, 243, 235, 0.25) 0%, rgba(246, 243, 235, 0.5) 100%),
+        radial-gradient(circle at center, rgba(251, 249, 245, 0.45) 0%, rgba(251, 249, 245, 0.65) 100%),
         url('../images/b5115b72-8826-4cb9-ac17-2b6836d731e0.png');
 }
 
 html.light-mode body.dashboard-layout {
     background-image:
-        radial-gradient(circle at center, rgba(246, 243, 235, 0.3) 0%, rgba(246, 243, 235, 0.55) 100%),
+        radial-gradient(circle at center, rgba(251, 249, 245, 0.42) 0%, rgba(251, 249, 245, 0.62) 100%),
         url('../images/b5115b72-8826-4cb9-ac17-2b6836d731e0.png');
 }
 
+/* ---- Glass Card ---- */
+html.light-mode .glass-card {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow);
+}
+
+/* ---- Navbar ---- */
 html.light-mode .navbar {
-    background: rgba(255, 255, 255, 0.85);
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
     border-top: none;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
 html.light-mode .navbar .logo {
-    color: var(--primary);
-}
-
-html.light-mode .dropdown-menu {
-    background: rgba(255, 255, 255, 0.95);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-}
-
-html.light-mode .dropdown-item {
-    color: var(--text-main);
-}
-
-html.light-mode .dropdown-item:hover {
-    background: rgba(148, 114, 60, 0.08);
-    color: var(--primary);
+    color: #4a3112;
 }
 
 html.light-mode .nav-link {
-    background: rgba(0, 0, 0, 0.03);
+    background: rgba(122, 92, 46, 0.06);
     color: var(--text-main);
-    border-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(122, 92, 46, 0.14);
 }
 
 html.light-mode .nav-link:hover {
@@ -334,7 +332,42 @@ html.light-mode .nav-link:hover {
     border-color: var(--primary);
 }
 
-/* Botón de Alternancia de Tema */
+/* ---- Dropdown ---- */
+html.light-mode .dropdown-menu {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 12px 36px rgba(43, 37, 32, 0.1);
+}
+
+/* El triángulo del dropdown */
+html.light-mode .dropdown-menu::before {
+    background: var(--card-bg);
+    border-color: var(--glass-border);
+}
+
+html.light-mode .dropdown-item {
+    color: var(--text-main);
+}
+
+html.light-mode .dropdown-item .iconify {
+    color: var(--primary);
+}
+
+html.light-mode .dropdown-item:hover {
+    background: rgba(122, 92, 46, 0.08);
+    color: var(--primary);
+}
+
+html.light-mode .dropdown-item.logout:hover {
+    background: rgba(192, 82, 74, 0.08);
+    color: var(--error);
+}
+
+html.light-mode .dropdown-item.logout .iconify {
+    color: var(--error);
+}
+
+/* ---- Theme Toggle ---- */
 .theme-toggle-btn {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--glass-border);
@@ -358,9 +391,9 @@ html.light-mode .nav-link:hover {
 }
 
 html.light-mode .theme-toggle-btn {
-    background: rgba(0, 0, 0, 0.03);
+    background: rgba(122, 92, 46, 0.07);
     color: var(--text-main);
-    border-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(122, 92, 46, 0.14);
 }
 
 html.light-mode .theme-toggle-btn:hover {
@@ -378,138 +411,225 @@ html.light-mode .theme-toggle-btn:hover {
     font-size: 1.2rem;
 }
 
-/* Ajustes de Inputs en Modo Claro */
-html.light-mode .input-wrapper input {
-    color: var(--text-main);
-    background: rgba(0, 0, 0, 0.02);
-    border-color: rgba(0, 0, 0, 0.08);
-}
-
-html.light-mode .input-wrapper input:focus {
-    background: rgba(255, 255, 255, 0.8);
-    border-color: var(--primary);
-}
-
-/* Modales en Modo Claro */
-html.light-mode .book-modal,
-html.light-mode .bookmark-modal-card,
-html.light-mode .info-content {
-    background: #fdfcf9;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    color: var(--text-main);
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
-}
-
-html.light-mode .modal-left {
-    background: #f5f0e6;
-    border-right: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-html.light-mode .close-modal,
-html.light-mode .bookmark-close-btn {
-    background: rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    color: var(--text-main);
-}
-
-html.light-mode .close-modal:hover,
-html.light-mode .bookmark-close-btn:hover {
-    background: var(--error);
-    color: #fff;
-}
-
-html.light-mode .bookmark-input {
-    background: rgba(0, 0, 0, 0.02);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    color: var(--text-main);
-}
-
-/* Botón de cierre en controles de lector */
-html.light-mode body.reader-page-body {
-    color: var(--text-main);
-}
-
-/* ==========================================
-   LIGHT MODE - CONTRAST FIXES
-   Títulos y textos con bajo contraste en modo claro
-   ========================================== */
-
-/* Hero section - título principal */
-html.light-mode .hero-section h1 {
-    color: #1a120b;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-/* Hero description */
-html.light-mode .hero-description {
-    color: #4a3f35;
-}
-
-/* Buscador - borde y fondo visibles en modo claro */
-html.light-mode .rustic-search-input {
-    background: rgba(255, 255, 255, 0.75);
-    border: 1px solid rgba(148, 114, 60, 0.3);
-    box-shadow: 0 4px 20px rgba(43, 35, 28, 0.08);
-}
-
-html.light-mode .rustic-search-input:focus-within {
-    background: rgba(255, 255, 255, 0.95);
-    border-color: var(--primary);
-    box-shadow: 0 10px 30px rgba(43, 35, 28, 0.1), 0 0 0 4px rgba(148, 114, 60, 0.12);
-}
-
-html.light-mode .rustic-search-input input {
-    color: #1a120b;
-}
-
-html.light-mode .rustic-search-input input::placeholder {
-    color: #8a7a6a;
-}
-
-html.light-mode .rustic-search-input .iconify {
-    color: #8a7a6a;
-}
-
-/* Labels de formulario */
+/* ---- Inputs ---- */
 html.light-mode .input-group label {
-    color: #4a3f35;
+    color: var(--text-main);
     font-weight: 600;
 }
 
-/* Iconos de los inputs */
 html.light-mode .input-wrapper .iconify {
-    color: #7a6a5a;
+    color: var(--text-muted);
 }
 
-/* Lista (mylist) - header */
+html.light-mode .input-wrapper input {
+    color: var(--text-main);
+    background: #ffffff;
+    border-color: var(--glass-border);
+}
+
+html.light-mode .input-wrapper input::placeholder {
+    color: rgba(43, 37, 32, 0.45);
+}
+
+html.light-mode .input-wrapper input:focus {
+    background: #ffffff;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(128, 100, 60, 0.15);
+}
+
+/* ---- Buttons ---- */
+html.light-mode .btn-primary {
+    background: var(--primary);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(128, 100, 60, 0.2);
+}
+
+html.light-mode .btn-primary:hover {
+    background: var(--primary-hover);
+    box-shadow: 0 6px 20px rgba(128, 100, 60, 0.3);
+}
+
+html.light-mode .btn-secondary {
+    background: var(--error);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(205, 92, 84, 0.2);
+}
+
+html.light-mode .btn-secondary:hover {
+    background: #e06c64;
+    box-shadow: 0 6px 20px rgba(205, 92, 84, 0.3);
+}
+
+/* ---- Modal principal ---- */
+html.light-mode .modal-overlay {
+    background: rgba(27, 24, 21, 0.45);
+    backdrop-filter: blur(8px);
+}
+
+html.light-mode .book-modal {
+    background: #ffffff;
+    border: 1px solid rgba(128, 100, 60, 0.15);
+    box-shadow: 0 20px 60px rgba(43, 37, 32, 0.1);
+}
+
+html.light-mode .modal-left {
+    background: linear-gradient(160deg, #faf9f6, #f0ede8);
+    border-right: 1px solid rgba(128, 100, 60, 0.1);
+}
+
+html.light-mode .modal-right h2 {
+    color: var(--text-main);
+}
+
+html.light-mode .modal-description {
+    color: var(--text-muted);
+}
+
+html.light-mode .close-modal {
+    background: rgba(128, 100, 60, 0.06);
+    border: 1px solid rgba(128, 100, 60, 0.12);
+    color: var(--text-muted);
+}
+
+html.light-mode .close-modal:hover {
+    background: var(--error);
+    border-color: var(--error);
+    color: #ffffff;
+}
+
+html.light-mode .info-content {
+    background: #ffffff;
+    border: 1px solid rgba(128, 100, 60, 0.12);
+    color: var(--text-main);
+    box-shadow: 0 8px 28px rgba(43, 37, 32, 0.05);
+}
+
+/* ---- Hero / Dashboard ---- */
+html.light-mode .hero-section h1 {
+    color: var(--text-main);
+    text-shadow: 0 2px 10px rgba(43, 37, 32, 0.05);
+}
+
+html.light-mode .hero-description {
+    color: #4a433c;
+    font-weight: 500;
+}
+
+/* ---- Search ---- */
+html.light-mode .rustic-search-input {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(128, 100, 60, 0.18);
+    box-shadow: 0 4px 18px rgba(43, 37, 32, 0.04);
+}
+
+html.light-mode .rustic-search-input:focus-within {
+    background: #ffffff;
+    border-color: var(--primary);
+    box-shadow: 0 8px 28px rgba(43, 37, 32, 0.06), 0 0 0 3px rgba(128, 100, 60, 0.15);
+}
+
+html.light-mode .rustic-search-input input {
+    color: var(--text-main);
+}
+
+html.light-mode .rustic-search-input input::placeholder {
+    color: rgba(43, 37, 32, 0.45);
+}
+
+html.light-mode .rustic-search-input .iconify {
+    color: var(--text-muted);
+}
+
+html.light-mode .rustic-search-input:focus-within .iconify {
+    color: var(--primary);
+}
+
+/* ---- Book Cards ---- */
+html.light-mode .book-details {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: var(--glass-border);
+    box-shadow: 0 8px 24px rgba(43, 37, 32, 0.06);
+}
+
+html.light-mode .book-card:hover .book-details {
+    border-color: var(--primary);
+    background: #ffffff;
+    box-shadow: 0 12px 30px rgba(43, 37, 32, 0.1);
+}
+
+html.light-mode .fav-btn {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(128, 100, 60, 0.15);
+    color: var(--text-muted);
+}
+
+html.light-mode .fav-btn:hover {
+    background: rgba(128, 100, 60, 0.08);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+html.light-mode .fav-btn.active {
+    background: rgba(128, 100, 60, 0.1);
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+/* ---- My List ---- */
 html.light-mode .list-header h1 {
-    color: #1a120b;
+    color: var(--text-main);
     text-shadow: none;
 }
 
 html.light-mode .list-header p {
-    color: #4a3f35;
+    color: #4a433c;
+    font-weight: 500;
 }
 
-/* List items - fondo en modo claro */
 html.light-mode .list-item {
-    background: rgba(255, 255, 255, 0.75);
-    border-color: rgba(148, 114, 60, 0.2);
+    background: rgba(246, 243, 237, 0.98);
+    border-color: rgba(122, 92, 46, 0.22);
 }
 
 html.light-mode .list-item:hover {
-    background: rgba(255, 255, 255, 0.95);
+    background: #ffffff;
     border-color: var(--primary);
+    box-shadow: 0 8px 24px rgba(43, 37, 32, 0.08);
 }
 
-/* Barra de progreso de fondo en modo claro */
+html.light-mode .item-meta-extra {
+    border-top-color: rgba(122, 92, 46, 0.15);
+}
+
 html.light-mode .progress-bar-container {
-    background: rgba(0, 0, 0, 0.08);
+    background: rgba(43, 37, 32, 0.08);
 }
 
-/* Perfil - nombres y textos */
+html.light-mode .btn-read {
+    background: var(--primary);
+    color: #ffffff;
+    box-shadow: 0 3px 10px rgba(122, 92, 46, 0.22);
+}
+
+html.light-mode .btn-read:hover {
+    background: var(--primary-hover);
+    box-shadow: 0 5px 15px rgba(122, 92, 46, 0.32);
+}
+
+html.light-mode .btn-remove {
+    background: transparent;
+    color: var(--error);
+    border-color: rgba(205, 92, 84, 0.25);
+}
+
+html.light-mode .btn-remove:hover {
+    background: rgba(205, 92, 84, 0.06);
+    border-color: var(--error);
+}
+
+/* ---- Profile ---- */
 html.light-mode .profile-header-card h2 {
-    color: #1a120b;
+    color: var(--text-main);
 }
 
 html.light-mode .profile-header-card p {
@@ -517,41 +637,110 @@ html.light-mode .profile-header-card p {
 }
 
 html.light-mode .section-header h2 {
-    color: #1a120b;
+    color: var(--text-main);
 }
 
 html.light-mode .profile-form-card h2 {
-    color: #1a120b;
+    color: var(--text-main);
 }
 
 html.light-mode .avatar-toggle-btn {
-    color: #4a3f35;
+    color: var(--text-muted);
 }
 
-/* Footer en modo claro */
+html.light-mode .avatar-toggle-btn:hover {
+    color: var(--primary);
+}
+
+html.light-mode .review-card {
+    background: rgba(246, 243, 237, 0.98);
+    border-color: rgba(122, 92, 46, 0.2);
+    box-shadow: 0 4px 15px rgba(43, 37, 32, 0.04);
+}
+
+html.light-mode .review-card:hover {
+    background: #ffffff;
+    border-color: var(--primary);
+}
+
+html.light-mode .review-text {
+    color: var(--text-main);
+}
+
+html.light-mode .review-date {
+    color: #4a433c;
+    font-weight: 500;
+}
+
+/* ---- Footer ---- */
 html.light-mode footer {
-    background: rgba(255, 255, 255, 0.7);
-    border-top: 1px solid rgba(148, 114, 60, 0.2);
+    background: rgba(246, 243, 237, 0.95);
+    border-top: 1px solid rgba(122, 92, 46, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
 html.light-mode .copyright {
-    color: #5a4f45;
+    color: #4a433c;
+    font-weight: 500;
 }
 
 html.light-mode .social-link {
-    background: rgba(0, 0, 0, 0.04);
-    border-color: rgba(0, 0, 0, 0.08);
-    color: #5a4f45;
+    background: rgba(122, 92, 46, 0.05);
+    border-color: rgba(122, 92, 46, 0.12);
+    color: var(--text-muted);
 }
 
-/* Página de login/registro - texto de enlace */
-html.light-mode .footer-links p {
-    color: #4a3f35;
-}
-
-/* Detalles del libro sobre la portada - sin cambios pues tiene fondo oscuro propio */
-/* Pero en modo claro se puede mejorar el fondo */
-html.light-mode .book-details {
-    background: rgba(20, 14, 10, 0.88);
+html.light-mode .social-link:hover {
+    color: var(--primary);
+    background: rgba(128, 100, 60, 0.1);
     border-color: var(--primary);
+}
+
+/* ---- Auth pages (login/register) ---- */
+html.light-mode .footer-links p {
+    color: var(--text-muted);
+}
+
+html.light-mode .footer-links a {
+    color: var(--primary);
+}
+
+/* ---- Reader page ---- */
+html.light-mode body.reader-page-body {
+    color: var(--text-main);
+}
+
+/* ---- Responsive Mobile Adjustments for Small Screens ---- */
+@media (max-width: 580px) {
+    h1 {
+        font-size: 2.2rem !important;
+    }
+    h2 {
+        font-size: 1.6rem !important;
+    }
+    h3 {
+        font-size: 1.25rem !important;
+    }
+    
+    .glass-card {
+        padding: 1.2rem !important;
+    }
+    
+    /* Collapse password grid in profile */
+    .profile-form-card form > div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+
+    /* Modal button layouts */
+    .modal-actions {
+        flex-direction: column !important;
+        gap: 0.8rem !important;
+        width: 100% !important;
+    }
+    
+    .modal-actions button {
+        width: 100% !important;
+    }
 }

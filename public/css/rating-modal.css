@@ -298,3 +298,119 @@
     transform: none;
     box-shadow: none;
 }
+
+/* ==========================================
+   RATING MODAL — LIGHT MODE
+   ========================================== */
+
+html.light-mode .rating-modal-card {
+    background: rgba(255, 255, 255, 0.98);
+    border-color: rgba(128, 100, 60, 0.18);
+    box-shadow: 0 20px 60px rgba(43, 37, 32, 0.08);
+}
+
+html.light-mode .rating-modal-accent {
+    background: linear-gradient(90deg, transparent, var(--reader-gold, #80643c), transparent);
+}
+
+html.light-mode .rating-modal-icon {
+    background: rgba(128, 100, 60, 0.08);
+    border-color: rgba(128, 100, 60, 0.2);
+    color: var(--reader-gold, #80643c);
+}
+
+html.light-mode .rating-modal-title {
+    color: var(--reader-gold, #80643c);
+}
+
+html.light-mode .rating-modal-subtitle {
+    color: var(--reader-text-muted, #72685e);
+}
+
+html.light-mode .rating-close-btn {
+    background: rgba(128, 100, 60, 0.05);
+    border-color: rgba(128, 100, 60, 0.12);
+    color: var(--reader-text-muted, #72685e);
+}
+
+html.light-mode .rating-close-btn:hover {
+    background: rgba(205, 92, 84, 0.08);
+    border-color: rgba(205, 92, 84, 0.25);
+    color: var(--error);
+}
+
+html.light-mode .rating-modal-divider {
+    background: rgba(128, 100, 60, 0.1);
+}
+
+html.light-mode .rating-question {
+    color: var(--text-main, #2b2520);
+}
+
+html.light-mode .rating-book-name {
+    color: var(--reader-gold, #80643c);
+}
+
+html.light-mode .rating-textarea-label {
+    color: var(--reader-text-muted, #72685e);
+}
+
+html.light-mode .rating-textarea-label span {
+    color: rgba(43, 37, 32, 0.55);
+}
+
+html.light-mode .rating-textarea {
+    background: #ffffff;
+    border-color: rgba(128, 100, 60, 0.18);
+    color: var(--text-main, #2b2520);
+}
+
+html.light-mode .rating-textarea::placeholder {
+    color: rgba(43, 37, 32, 0.45);
+}
+
+html.light-mode .rating-textarea:focus {
+    border-color: var(--primary);
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(128, 100, 60, 0.15);
+}
+
+html.light-mode .rating-char-count {
+    color: rgba(43, 37, 32, 0.5);
+}
+
+html.light-mode .rating-label {
+    color: var(--reader-text-muted, #72685e);
+}
+
+html.light-mode .rating-label.has-rating {
+    color: #c4973a;
+}
+
+html.light-mode .rating-cancel-btn {
+    color: var(--reader-text-muted, #72685e);
+    border-color: rgba(128, 100, 60, 0.18);
+}
+
+html.light-mode .rating-cancel-btn:hover {
+    background: rgba(128, 100, 60, 0.05);
+    color: var(--text-main, #2b2520);
+    border-color: rgba(128, 100, 60, 0.3);
+}
+
+html.light-mode .rating-save-btn {
+    background: var(--reader-gold, #80643c);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(128, 100, 60, 0.2);
+}
+
+html.light-mode .rating-save-btn:hover {
+    background: var(--primary-hover, #9b7a4c);
+    box-shadow: 0 6px 20px rgba(128, 100, 60, 0.3);
+}
+
+html.light-mode .rating-save-btn:disabled {
+    background: rgba(128, 100, 60, 0.2);
+    color: rgba(43, 37, 32, 0.4);
+    box-shadow: none;
+}
