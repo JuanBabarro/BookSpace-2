@@ -476,6 +476,49 @@ body.dashboard-layout {
     }
 }
 
+/* iPhone 6s y pantallas ≤ 390px */
+@media (max-width: 390px) {
+    .search-box-container {
+        padding: 12px 0;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .rustic-search-input {
+        padding: 0.45rem 1rem;
+        gap: 8px;
+        border-radius: 40px;
+    }
+
+    .rustic-search-input .iconify {
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+
+    .rustic-search-input input {
+        font-size: 0.88rem;
+        padding: 0.7rem 0;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .rustic-search-input input::placeholder {
+        font-size: 0.83rem;
+        letter-spacing: 0;
+    }
+
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+        margin-bottom: 1.2rem;
+    }
+}
+
 /* Footer Styles */
 footer {
     margin-top: 5rem;
