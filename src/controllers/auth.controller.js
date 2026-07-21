@@ -1,6 +1,22 @@
 const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator');
 const db = require('../config/db');
+const fs = require('fs');
+const path = require('path');
+
+const USERS_JSON_PATH = path.join(__dirname, '../../users.json');
+
+const getLocalUsers = () => {
+    try {
+        if (fs.existsSync(USERS_JSON_PATH)) {
+            const data = fs.readFileSync(USERS_JSON_PATH, 'utf-8');
+            return JSON.parse(data);
+        }
+    } catch (err) {
+        console.error("Error al leer users.json:", err);
+    }
+    return [];
+};
 
 const register = async (req, res) => {
     const errors = validationResult(req);
@@ -26,6 +42,9 @@ const register = async (req, res) => {
         });
     } catch (error) {
         console.error("Error en registro:", error);
+        if (error.message === 'DB_CONNECTION_FAILED') {
+            return res.status(503).json({ error: "La base de datos no está disponible. No se pueden registrar nuevos usuarios en modo local." });
+        }
         if (error.code === 'ER_DUP_ENTRY') {
             return res.status(409).json({ error: "El email o nombre de usuario ya está registrado." });
         }
@@ -42,25 +61,44 @@ const login = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        // Buscar el usuario por email en la tabla 'usuarios'
-        const [rows] = await db.execute('SELECT * FROM usuarios WHERE email = ?', [email]);
-        
-        if (rows.length === 0) {
-            return res.status(401).json({ error: "Credenciales inválidas" });
+        let user;
+        let isDbMode = true;
+
+        try {
+            // Buscar el usuario por email en la tabla 'usuarios'
+            const [rows] = await db.execute('SELECT * FROM usuarios WHERE email = ?', [email]);
+            
+            if (rows.length === 0) {
+                return res.status(401).json({ error: "Credenciales inválidas" });
+            }
+            
+            user = rows[0];
+        } catch (dbError) {
+            console.warn("Base de datos no disponible, activando fallback local para login:", dbError.message);
+            isDbMode = false;
+            
+            const localUsers = getLocalUsers();
+            user = localUsers.find(u => u.email === email);
+            if (!user) {
+                return res.status(401).json({ error: "Credenciales inválidas (Modo Local)" });
+            }
+        }
+
+        // Comparar la contraseña con bcrypt (columna 'contrasena') o texto plano para comodidad en local
+        let isMatch = false;
+        if (user.contrasena.startsWith('$2')) {
+            isMatch = await bcrypt.compare(password, user.contrasena);
+        } else {
+            isMatch = (password === user.contrasena);
         }
         
-        const user = rows[0];
-
-        // Comparar la contraseña con bcrypt (columna 'contrasena')
-        const isMatch = await bcrypt.compare(password, user.contrasena);
-        
         if (!isMatch) {
-            return res.status(401).json({ error: "Credenciales inválidas" });
+            return res.status(401).json({ error: isDbMode ? "Credenciales inválidas" : "Credenciales inválidas (Modo Local)" });
         }
 
         // Devolver usuario sin la contraseña, mapeando a nombres en inglés para el frontend
         res.status(200).json({ 
-            message: "Inicio de sesión exitoso",
+            message: isDbMode ? "Inicio de sesión exitoso" : "Inicio de sesión exitoso (Modo Local)",
             user: { 
                 id: (user.id || user.id_usuario), 
                 first_name: user.nombre, 
@@ -107,6 +145,9 @@ const updateProfile = async (req, res) => {
         });
     } catch (error) {
         console.error("Error actualizando perfil:", error);
+        if (error.message === 'DB_CONNECTION_FAILED') {
+            return res.status(503).json({ error: "La base de datos no está disponible. No se puede actualizar el perfil en modo local." });
+        }
         if (error.code === 'ER_DUP_ENTRY') {
             return res.status(409).json({ error: "El email o nombre de usuario ya está en uso por otra cuenta." });
         }
